@@ -35,6 +35,7 @@
                 <field type="STRING" length="255" name="description" nullable="true" collection="false"/>
                 <field type="INTEGER" length="255" name="quantity" nullable="true" collection="false"/>
                 <field type="INTEGER" length="255" name="amount" nullable="true" collection="false"/>
+                <field type="INTEGER" length="255" name="rate" nullable="true" collection="false"/>
             </fields>
             <uniqueConstraints/>
             <queries/>
