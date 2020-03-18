@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<businessObjectModel modelVersion="1.0" productVersion="7.10.3">
+    <businessObjects>
+        <businessObject qualifiedName="com.invoice.model.Customer">
+            <fields>
+                <field type="STRING" length="255" name="name" nullable="false" collection="false"/>
+                <field type="STRING" length="255" name="email" nullable="false" collection="false"/>
+                <field type="STRING" length="255" name="company" nullable="false" collection="false"/>
+                <field type="STRING" length="255" name="phone" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="address" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="billName" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="billEmail" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="billAddress" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="billPhone" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.invoice.model.Invoice">
+            <fields>
+                <field type="LOCALDATE" length="255" name="invoiceDate" nullable="false" collection="false"/>
+                <field type="FLOAT" length="255" name="total" nullable="false" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.invoice.model.Customer" fetchType="LAZY" name="customer" nullable="false" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.invoice.model.InvoiceLine" fetchType="LAZY" name="invoiceLines" nullable="true" collection="true"/>
+                <field type="STRING" length="255" name="invoiceNumber" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.invoice.model.InvoiceLine">
+            <fields>
+                <field type="STRING" length="255" name="description" nullable="true" collection="false"/>
+                <field type="INTEGER" length="255" name="quantity" nullable="true" collection="false"/>
+                <field type="FLOAT" length="255" name="amount" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+    </businessObjects>
+</businessObjectModel>

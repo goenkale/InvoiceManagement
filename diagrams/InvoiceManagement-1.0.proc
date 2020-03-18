@@ -145,7 +145,7 @@
           <styles xmi:type="notation:FontStyle" xmi:id="_nmtBdGkvEeqX24msL49PEg" fontName="Segoe UI"/>
           <styles xmi:type="notation:LineStyle" xmi:id="_nmtBdWkvEeqX24msL49PEg"/>
           <styles xmi:type="notation:FillStyle" xmi:id="_nmtBdmkvEeqX24msL49PEg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nmtBd2kvEeqX24msL49PEg"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nmtBd2kvEeqX24msL49PEg" x="48" y="10" width="1297" height="313"/>
         </children>
       </children>
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_nmtBeGkvEeqX24msL49PEg"/>
