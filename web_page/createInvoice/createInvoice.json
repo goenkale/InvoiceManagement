@@ -2,7 +2,7 @@
   "designerVersion" : "1.10.50",
   "id" : "createInvoice",
   "name" : "createInvoice",
-  "lastUpdate" : 1584555145870,
+  "lastUpdate" : 1585150288223,
   "rows" : [
     [
       {
@@ -931,7 +931,7 @@
                               },
                               "text" : {
                                 "type" : "interpolation",
-                                "value" : "{{formInput.invoiceInput.subtotal | currency:\"€ \"}}"
+                                "value" : "{{formInput.invoiceInput.subTotal | currency:\"€ \"}}"
                               },
                               "alignment" : {
                                 "type" : "constant",
@@ -1366,7 +1366,7 @@
         "    $data.formInput.invoiceInput.invoiceLines.forEach(function(elem){",
         "        subtotal += elem.amount;",
         "    });",
-        "    $data.formInput.invoiceInput.subtotal = subtotal;",
+        "    $data.formInput.invoiceInput.subTotal = subtotal;",
         "    $data.formInput.invoiceInput.tax = subtotal * ($data.formInput.invoiceInput.taxRate/100);",
         "    $data.formInput.invoiceInput.total = subtotal +  $data.formInput.invoiceInput.tax;",
         "}"
