@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:connectorconfiguration="http://wwww.bonitasoft.org/model/connector/configuration" xmlns:decision="http://www.bonitasoft.org/ns/studio/process/decision" xmlns:definition="http://www.bonitasoft.org/ns/connector/definition/6.1" xmlns:expression="http://www.bonitasoft.org/ns/studio/expression" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:process="http://www.bonitasoft.org/ns/studio/process" xsi:schemaLocation="http://www.bonitasoft.org/ns/studio/process/decision http://www.bonitasoft.org/ns/studio/process#//decision">
+  <process:MainProcess xmi:id="_CcS9cG58EequwMTVpq0wag" name="InvoiceManagement" version="5.0" author="Bonitasoft" bonitaVersion="7.10.3" bonitaModelVersion="7.10.0-001" configId="ACED0005740023496E766F6963654D616E6167656D656E74372E31302E302D303031372E31302E337370">
+    <elements xmi:type="process:Pool" xmi:id="_CcS9cW58EequwMTVpq0wag" name="InvoiceManagement" version="5.0">
+      <elements xmi:type="process:Lane" xmi:id="_CcS9cm58EequwMTVpq0wag" name="Employee lane" actor="_CcS-Q258EequwMTVpq0wag">
+        <elements xmi:type="process:StartEvent" xmi:id="_CcS9c258EequwMTVpq0wag" name="Create invoice" outgoing="_CcS-N258EequwMTVpq0wag">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_CcS9dG58EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_CcS9dW58EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_CcS9dm58EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:Task" xmi:id="_CcS9d258EequwMTVpq0wag" name="Review invoice" outgoing="_CcS-Om58EequwMTVpq0wag" incoming="_CcS-N258EequwMTVpq0wag" overrideActorsOfTheLane="false">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_CcS9eG58EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_CcS9eW58EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_CcS9em58EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+          <operations xmi:type="expression:Operation" xmi:id="_CcS9e258EequwMTVpq0wag">
+            <leftOperand xmi:type="expression:Expression" xmi:id="_CcS9fG58EequwMTVpq0wag" name="invoice" content="invoice" type="TYPE_VARIABLE" returnType="com.invoice.model.Invoice">
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_CcS9fW58EequwMTVpq0wag" name="invoice" dataType="_CcS-dW58EequwMTVpq0wag" className="com.invoice.model.Invoice">
+                <defaultValue xmi:type="expression:Expression" xmi:id="_CcS9fm58EequwMTVpq0wag" name="init_invoices" content="def invoiceVar = new com.invoice.model.Invoice()&#xD;&#xA;invoiceVar.invoiceDate = invoiceInput?.invoiceDate&#xD;&#xA;&#xD;&#xA;invoiceVar.total = invoiceInput?.total&#xD;&#xA;&#xD;&#xA;invoiceVar.customer = {&#xD;&#xA;&#x9;//Retrieve aggregated Customer using its DAO and persistenceId&#xD;&#xA;&#x9;def customerVar = customerDAO.findByPersistenceId(invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null)&#xD;&#xA;&#x9;if (!customerVar) {&#xD;&#xA;&#x9;&#x9;if (invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null) {&#xD;&#xA;&#x9;&#x9;&#x9;throw new IllegalArgumentException(&quot;The aggregated reference of type `Customer` with the persistence id &quot; + invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null + &quot; has not been found.&quot;)&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;return null&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return customerVar}()&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;invoiceVar.invoiceLines = {&#xD;&#xA;&#x9;def invoiceLineList = []&#xD;&#xA;&#x9;//For each item collected in multiple input&#xD;&#xA;&#x9;invoiceInput?.invoiceLines.each{&#xD;&#xA;&#x9;&#x9;//Add a new composed InvoiceLine instance&#xD;&#xA;&#x9;&#x9;invoiceLineList.add({ currentInvoiceLineInput ->&#xD;&#xA;&#x9;&#x9;&#x9;def invoiceLineVar = new com.invoice.model.InvoiceLine()&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.description = currentInvoiceLineInput.description&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.quantity = currentInvoiceLineInput.quantity&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.amount = currentInvoiceLineInput.amount&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.rate = currentInvoiceLineInput.rate&#xD;&#xA;&#x9;&#x9;&#x9;return invoiceLineVar&#xD;&#xA;&#x9;&#x9;}(it))&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return invoiceLineList}()&#xD;&#xA;&#xD;&#xA;invoiceVar.status = &quot;pending&quot;&#xD;&#xA;invoiceVar.invoiceNumber = processInstanceId.toString()&#xD;&#xA;&#xD;&#xA;return invoiceVar" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.invoice.model.Invoice">
+                  <referencedElements xmi:type="expression:Expression" xmi:id="_CcS9f258EequwMTVpq0wag" name="processInstanceId" content="processInstanceId" type="TYPE_ENGINE_CONSTANT" returnType="java.lang.Long"/>
+                  <referencedElements xmi:type="process:ContractInput" xmi:id="_CcS9gG58EequwMTVpq0wag" name="invoiceInput" type="COMPLEX"/>
+                  <referencedElements xmi:type="expression:Expression" xmi:id="_CcS9gW58EequwMTVpq0wag" name="customerDAO" content="customerDAO" type="TYPE_BUSINESS_OBJECT_DAO" returnType="com.invoice.model.CustomerDAO" returnTypeFixed="true"/>
+                </defaultValue>
+              </referencedElements>
+            </leftOperand>
+            <rightOperand xmi:type="expression:Expression" xmi:id="_CcS9gm58EequwMTVpq0wag" name="invoiceInput.invoiceDate" content="invoiceInput?.invoiceDate" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.time.LocalDate">
+              <referencedElements xmi:type="process:ContractInput" xmi:id="_CcS9g258EequwMTVpq0wag" name="invoiceInput" type="COMPLEX" createMode="false"/>
+            </rightOperand>
+            <operator xmi:type="expression:Operator" xmi:id="_CcS9hG58EequwMTVpq0wag" type="JAVA_METHOD" expression="setInvoiceDate">
+              <inputTypes>java.time.LocalDate</inputTypes>
+            </operator>
+          </operations>
+          <operations xmi:type="expression:Operation" xmi:id="_CcS9hW58EequwMTVpq0wag">
+            <leftOperand xmi:type="expression:Expression" xmi:id="_CcS9hm58EequwMTVpq0wag" name="invoice" content="invoice" type="TYPE_VARIABLE" returnType="com.invoice.model.Invoice">
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_CcS9h258EequwMTVpq0wag" name="invoice" dataType="_CcS-dW58EequwMTVpq0wag" className="com.invoice.model.Invoice">
+                <defaultValue xmi:type="expression:Expression" xmi:id="_CcS9iG58EequwMTVpq0wag" name="init_invoices" content="def invoiceVar = new com.invoice.model.Invoice()&#xD;&#xA;invoiceVar.invoiceDate = invoiceInput?.invoiceDate&#xD;&#xA;&#xD;&#xA;invoiceVar.total = invoiceInput?.total&#xD;&#xA;&#xD;&#xA;invoiceVar.customer = {&#xD;&#xA;&#x9;//Retrieve aggregated Customer using its DAO and persistenceId&#xD;&#xA;&#x9;def customerVar = customerDAO.findByPersistenceId(invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null)&#xD;&#xA;&#x9;if (!customerVar) {&#xD;&#xA;&#x9;&#x9;if (invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null) {&#xD;&#xA;&#x9;&#x9;&#x9;throw new IllegalArgumentException(&quot;The aggregated reference of type `Customer` with the persistence id &quot; + invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null + &quot; has not been found.&quot;)&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;return null&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return customerVar}()&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;invoiceVar.invoiceLines = {&#xD;&#xA;&#x9;def invoiceLineList = []&#xD;&#xA;&#x9;//For each item collected in multiple input&#xD;&#xA;&#x9;invoiceInput?.invoiceLines.each{&#xD;&#xA;&#x9;&#x9;//Add a new composed InvoiceLine instance&#xD;&#xA;&#x9;&#x9;invoiceLineList.add({ currentInvoiceLineInput ->&#xD;&#xA;&#x9;&#x9;&#x9;def invoiceLineVar = new com.invoice.model.InvoiceLine()&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.description = currentInvoiceLineInput.description&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.quantity = currentInvoiceLineInput.quantity&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.amount = currentInvoiceLineInput.amount&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.rate = currentInvoiceLineInput.rate&#xD;&#xA;&#x9;&#x9;&#x9;return invoiceLineVar&#xD;&#xA;&#x9;&#x9;}(it))&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return invoiceLineList}()&#xD;&#xA;&#xD;&#xA;invoiceVar.status = &quot;pending&quot;&#xD;&#xA;invoiceVar.invoiceNumber = processInstanceId.toString()&#xD;&#xA;&#xD;&#xA;return invoiceVar" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.invoice.model.Invoice">
+                  <referencedElements xmi:type="expression:Expression" xmi:id="_CcS9iW58EequwMTVpq0wag" name="processInstanceId" content="processInstanceId" type="TYPE_ENGINE_CONSTANT" returnType="java.lang.Long"/>
+                  <referencedElements xmi:type="process:ContractInput" xmi:id="_CcS9im58EequwMTVpq0wag" name="invoiceInput" type="COMPLEX"/>
+                  <referencedElements xmi:type="expression:Expression" xmi:id="_CcS9i258EequwMTVpq0wag" name="customerDAO" content="customerDAO" type="TYPE_BUSINESS_OBJECT_DAO" returnType="com.invoice.model.CustomerDAO" returnTypeFixed="true"/>
+                </defaultValue>
+              </referencedElements>
+            </leftOperand>
+            <rightOperand xmi:type="expression:Expression" xmi:id="_CcS9jG58EequwMTVpq0wag" name="invoiceInput.total" content="invoiceInput?.total" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.lang.Integer">
+              <referencedElements xmi:type="process:ContractInput" xmi:id="_CcS9jW58EequwMTVpq0wag" name="invoiceInput" type="COMPLEX" createMode="false"/>
+            </rightOperand>
+            <operator xmi:type="expression:Operator" xmi:id="_CcS9jm58EequwMTVpq0wag" type="JAVA_METHOD" expression="setTotal">
+              <inputTypes>java.lang.Integer</inputTypes>
+            </operator>
+          </operations>
+          <operations xmi:type="expression:Operation" xmi:id="_CcS9j258EequwMTVpq0wag">
+            <leftOperand xmi:type="expression:Expression" xmi:id="_CcS9kG58EequwMTVpq0wag" name="invoice" content="invoice" type="TYPE_VARIABLE" returnType="com.invoice.model.Invoice">
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_CcS9kW58EequwMTVpq0wag" name="invoice" dataType="_CcS-dW58EequwMTVpq0wag" className="com.invoice.model.Invoice">
+                <defaultValue xmi:type="expression:Expression" xmi:id="_CcS9km58EequwMTVpq0wag" name="init_invoices" content="def invoiceVar = new com.invoice.model.Invoice()&#xD;&#xA;invoiceVar.invoiceDate = invoiceInput?.invoiceDate&#xD;&#xA;&#xD;&#xA;invoiceVar.total = invoiceInput?.total&#xD;&#xA;&#xD;&#xA;invoiceVar.customer = {&#xD;&#xA;&#x9;//Retrieve aggregated Customer using its DAO and persistenceId&#xD;&#xA;&#x9;def customerVar = customerDAO.findByPersistenceId(invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null)&#xD;&#xA;&#x9;if (!customerVar) {&#xD;&#xA;&#x9;&#x9;if (invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null) {&#xD;&#xA;&#x9;&#x9;&#x9;throw new IllegalArgumentException(&quot;The aggregated reference of type `Customer` with the persistence id &quot; + invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null + &quot; has not been found.&quot;)&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;return null&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return customerVar}()&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;invoiceVar.invoiceLines = {&#xD;&#xA;&#x9;def invoiceLineList = []&#xD;&#xA;&#x9;//For each item collected in multiple input&#xD;&#xA;&#x9;invoiceInput?.invoiceLines.each{&#xD;&#xA;&#x9;&#x9;//Add a new composed InvoiceLine instance&#xD;&#xA;&#x9;&#x9;invoiceLineList.add({ currentInvoiceLineInput ->&#xD;&#xA;&#x9;&#x9;&#x9;def invoiceLineVar = new com.invoice.model.InvoiceLine()&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.description = currentInvoiceLineInput.description&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.quantity = currentInvoiceLineInput.quantity&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.amount = currentInvoiceLineInput.amount&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.rate = currentInvoiceLineInput.rate&#xD;&#xA;&#x9;&#x9;&#x9;return invoiceLineVar&#xD;&#xA;&#x9;&#x9;}(it))&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return invoiceLineList}()&#xD;&#xA;&#xD;&#xA;invoiceVar.status = &quot;pending&quot;&#xD;&#xA;invoiceVar.invoiceNumber = processInstanceId.toString()&#xD;&#xA;&#xD;&#xA;return invoiceVar" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.invoice.model.Invoice">
+                  <referencedElements xmi:type="expression:Expression" xmi:id="_CcS9k258EequwMTVpq0wag" name="processInstanceId" content="processInstanceId" type="TYPE_ENGINE_CONSTANT" returnType="java.lang.Long"/>
+                  <referencedElements xmi:type="process:ContractInput" xmi:id="_CcS9lG58EequwMTVpq0wag" name="invoiceInput" type="COMPLEX"/>
+                  <referencedElements xmi:type="expression:Expression" xmi:id="_CcS9lW58EequwMTVpq0wag" name="customerDAO" content="customerDAO" type="TYPE_BUSINESS_OBJECT_DAO" returnType="com.invoice.model.CustomerDAO" returnTypeFixed="true"/>
+                </defaultValue>
+              </referencedElements>
+            </leftOperand>
+            <rightOperand xmi:type="expression:Expression" xmi:id="_CcS9lm58EequwMTVpq0wag" name="invoiceInput.customer" content="//Retrieve aggregated Customer using its DAO and persistenceId&#xD;&#xA;def customerVar = customerDAO.findByPersistenceId(invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null)&#xD;&#xA;if (!customerVar) {&#xD;&#xA;&#x9;if (invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null) {&#xD;&#xA;&#x9;&#x9;throw new IllegalArgumentException(&quot;The aggregated reference of type `Customer` with the persistence id &quot; + invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null + &quot; has not been found.&quot;)&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return null&#xD;&#xA;}&#xD;&#xA;return customerVar" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.invoice.model.Customer">
+              <referencedElements xmi:type="process:ContractInput" xmi:id="_CcS9l258EequwMTVpq0wag" name="invoiceInput" type="COMPLEX" createMode="false"/>
+              <referencedElements xmi:type="expression:Expression" xmi:id="_CcS9mG58EequwMTVpq0wag" name="customerDAO" content="customerDAO" type="TYPE_BUSINESS_OBJECT_DAO" returnType="com.invoice.model.CustomerDAO" returnTypeFixed="true"/>
+            </rightOperand>
+            <operator xmi:type="expression:Operator" xmi:id="_CcS9mW58EequwMTVpq0wag" type="JAVA_METHOD" expression="setCustomer">
+              <inputTypes>com.invoice.model.Customer</inputTypes>
+            </operator>
+          </operations>
+          <operations xmi:type="expression:Operation" xmi:id="_CcS9mm58EequwMTVpq0wag">
+            <leftOperand xmi:type="expression:Expression" xmi:id="_CcS9m258EequwMTVpq0wag" name="invoice" content="invoice" type="TYPE_VARIABLE" returnType="com.invoice.model.Invoice">
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_CcS9nG58EequwMTVpq0wag" name="invoice" dataType="_CcS-dW58EequwMTVpq0wag" className="com.invoice.model.Invoice">
+                <defaultValue xmi:type="expression:Expression" xmi:id="_CcS9nW58EequwMTVpq0wag" name="init_invoices" content="def invoiceVar = new com.invoice.model.Invoice()&#xD;&#xA;invoiceVar.invoiceDate = invoiceInput?.invoiceDate&#xD;&#xA;&#xD;&#xA;invoiceVar.total = invoiceInput?.total&#xD;&#xA;&#xD;&#xA;invoiceVar.customer = {&#xD;&#xA;&#x9;//Retrieve aggregated Customer using its DAO and persistenceId&#xD;&#xA;&#x9;def customerVar = customerDAO.findByPersistenceId(invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null)&#xD;&#xA;&#x9;if (!customerVar) {&#xD;&#xA;&#x9;&#x9;if (invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null) {&#xD;&#xA;&#x9;&#x9;&#x9;throw new IllegalArgumentException(&quot;The aggregated reference of type `Customer` with the persistence id &quot; + invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null + &quot; has not been found.&quot;)&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;return null&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return customerVar}()&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;invoiceVar.invoiceLines = {&#xD;&#xA;&#x9;def invoiceLineList = []&#xD;&#xA;&#x9;//For each item collected in multiple input&#xD;&#xA;&#x9;invoiceInput?.invoiceLines.each{&#xD;&#xA;&#x9;&#x9;//Add a new composed InvoiceLine instance&#xD;&#xA;&#x9;&#x9;invoiceLineList.add({ currentInvoiceLineInput ->&#xD;&#xA;&#x9;&#x9;&#x9;def invoiceLineVar = new com.invoice.model.InvoiceLine()&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.description = currentInvoiceLineInput.description&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.quantity = currentInvoiceLineInput.quantity&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.amount = currentInvoiceLineInput.amount&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.rate = currentInvoiceLineInput.rate&#xD;&#xA;&#x9;&#x9;&#x9;return invoiceLineVar&#xD;&#xA;&#x9;&#x9;}(it))&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return invoiceLineList}()&#xD;&#xA;&#xD;&#xA;invoiceVar.status = &quot;pending&quot;&#xD;&#xA;invoiceVar.invoiceNumber = processInstanceId.toString()&#xD;&#xA;&#xD;&#xA;return invoiceVar" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.invoice.model.Invoice">
+                  <referencedElements xmi:type="expression:Expression" xmi:id="_CcS9nm58EequwMTVpq0wag" name="processInstanceId" content="processInstanceId" type="TYPE_ENGINE_CONSTANT" returnType="java.lang.Long"/>
+                  <referencedElements xmi:type="process:ContractInput" xmi:id="_CcS9n258EequwMTVpq0wag" name="invoiceInput" type="COMPLEX"/>
+                  <referencedElements xmi:type="expression:Expression" xmi:id="_CcS9oG58EequwMTVpq0wag" name="customerDAO" content="customerDAO" type="TYPE_BUSINESS_OBJECT_DAO" returnType="com.invoice.model.CustomerDAO" returnTypeFixed="true"/>
+                </defaultValue>
+              </referencedElements>
+            </leftOperand>
+            <rightOperand xmi:type="expression:Expression" xmi:id="_CcS9oW58EequwMTVpq0wag" name="invoiceInput.invoiceLines" content="def invoiceLineList = []&#xD;&#xA;//For each item collected in multiple input&#xD;&#xA;invoiceInput?.invoiceLines.each{&#xD;&#xA;&#x9;//Add InvoiceLine instance&#xD;&#xA;&#x9;invoiceLineList.add({ currentInvoiceLineInput ->&#xD;&#xA;&#x9;&#x9;def invoiceLineVar = invoice.invoiceLines.find { it.persistenceId.toString() == currentInvoiceLineInput.persistenceId_string} ?: new com.invoice.model.InvoiceLine()&#xD;&#xA;&#x9;&#x9;invoiceLineVar.description = currentInvoiceLineInput.description&#xD;&#xA;&#x9;&#x9;invoiceLineVar.quantity = currentInvoiceLineInput.quantity&#xD;&#xA;&#x9;&#x9;invoiceLineVar.amount = currentInvoiceLineInput.amount&#xD;&#xA;&#x9;&#x9;return invoiceLineVar&#xD;&#xA;&#x9;}(it))&#xD;&#xA;}&#xD;&#xA;return invoiceLineList" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.util.List">
+              <referencedElements xmi:type="process:ContractInput" xmi:id="_CcS9om58EequwMTVpq0wag" name="invoiceInput" type="COMPLEX" createMode="false"/>
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_CcS9o258EequwMTVpq0wag" name="invoice" dataType="_CcS-dW58EequwMTVpq0wag" className="com.invoice.model.Invoice">
+                <defaultValue xmi:type="expression:Expression" xmi:id="_CcS9pG58EequwMTVpq0wag" name="init_invoices" content="def invoiceVar = new com.invoice.model.Invoice()&#xD;&#xA;invoiceVar.invoiceDate = invoiceInput?.invoiceDate&#xD;&#xA;&#xD;&#xA;invoiceVar.total = invoiceInput?.total&#xD;&#xA;&#xD;&#xA;invoiceVar.customer = {&#xD;&#xA;&#x9;//Retrieve aggregated Customer using its DAO and persistenceId&#xD;&#xA;&#x9;def customerVar = customerDAO.findByPersistenceId(invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null)&#xD;&#xA;&#x9;if (!customerVar) {&#xD;&#xA;&#x9;&#x9;if (invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null) {&#xD;&#xA;&#x9;&#x9;&#x9;throw new IllegalArgumentException(&quot;The aggregated reference of type `Customer` with the persistence id &quot; + invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null + &quot; has not been found.&quot;)&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;return null&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return customerVar}()&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;invoiceVar.invoiceLines = {&#xD;&#xA;&#x9;def invoiceLineList = []&#xD;&#xA;&#x9;//For each item collected in multiple input&#xD;&#xA;&#x9;invoiceInput?.invoiceLines.each{&#xD;&#xA;&#x9;&#x9;//Add a new composed InvoiceLine instance&#xD;&#xA;&#x9;&#x9;invoiceLineList.add({ currentInvoiceLineInput ->&#xD;&#xA;&#x9;&#x9;&#x9;def invoiceLineVar = new com.invoice.model.InvoiceLine()&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.description = currentInvoiceLineInput.description&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.quantity = currentInvoiceLineInput.quantity&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.amount = currentInvoiceLineInput.amount&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.rate = currentInvoiceLineInput.rate&#xD;&#xA;&#x9;&#x9;&#x9;return invoiceLineVar&#xD;&#xA;&#x9;&#x9;}(it))&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return invoiceLineList}()&#xD;&#xA;&#xD;&#xA;invoiceVar.status = &quot;pending&quot;&#xD;&#xA;invoiceVar.invoiceNumber = processInstanceId.toString()&#xD;&#xA;&#xD;&#xA;return invoiceVar" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.invoice.model.Invoice">
+                  <referencedElements xmi:type="expression:Expression" xmi:id="_CcS9pW58EequwMTVpq0wag" name="processInstanceId" content="processInstanceId" type="TYPE_ENGINE_CONSTANT" returnType="java.lang.Long"/>
+                  <referencedElements xmi:type="process:ContractInput" xmi:id="_CcS9pm58EequwMTVpq0wag" name="invoiceInput" type="COMPLEX"/>
+                  <referencedElements xmi:type="expression:Expression" xmi:id="_CcS9p258EequwMTVpq0wag" name="customerDAO" content="customerDAO" type="TYPE_BUSINESS_OBJECT_DAO" returnType="com.invoice.model.CustomerDAO" returnTypeFixed="true"/>
+                </defaultValue>
+              </referencedElements>
+            </rightOperand>
+            <operator xmi:type="expression:Operator" xmi:id="_CcS9qG58EequwMTVpq0wag" type="JAVA_METHOD" expression="setInvoiceLines">
+              <inputTypes>java.util.List</inputTypes>
+            </operator>
+          </operations>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_CcS9qW58EequwMTVpq0wag" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_CcS9qm58EequwMTVpq0wag" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_CcS9q258EequwMTVpq0wag" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_CcS9rG58EequwMTVpq0wag" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_CcS9rW58EequwMTVpq0wag" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <formMapping xmi:type="process:FormMapping" xmi:id="_CcS9rm58EequwMTVpq0wag">
+            <targetForm xmi:type="expression:Expression" xmi:id="_CcS9r258EequwMTVpq0wag" name="reviewInvoice" content="c28a5e79-c942-437c-a5b9-520aa2359215" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
+          </formMapping>
+          <contract xmi:type="process:Contract" xmi:id="_CcS9sG58EequwMTVpq0wag">
+            <inputs xmi:type="process:ContractInput" xmi:id="_CcS9sW58EequwMTVpq0wag" name="invoiceInput" type="COMPLEX" dataReference="invoice" createMode="false">
+              <inputs xmi:type="process:ContractInput" xmi:id="_CcS9sm58EequwMTVpq0wag" name="invoiceDate" type="LOCALDATE" createMode="false"/>
+              <inputs xmi:type="process:ContractInput" xmi:id="_CcS9s258EequwMTVpq0wag" name="total" type="INTEGER" createMode="false"/>
+              <inputs xmi:type="process:ContractInput" xmi:id="_CcS9tG58EequwMTVpq0wag" name="customer" type="COMPLEX" createMode="false">
+                <inputs xmi:type="process:ContractInput" xmi:id="_CcS9tW58EequwMTVpq0wag" name="persistenceId_string" createMode="false"/>
+              </inputs>
+              <inputs xmi:type="process:ContractInput" xmi:id="_CcS9tm58EequwMTVpq0wag" name="invoiceLines" type="COMPLEX" multiple="true" createMode="false">
+                <inputs xmi:type="process:ContractInput" xmi:id="_CcS9t258EequwMTVpq0wag" name="persistenceId_string" createMode="false"/>
+                <inputs xmi:type="process:ContractInput" xmi:id="_CcS9uG58EequwMTVpq0wag" name="description" createMode="false"/>
+                <inputs xmi:type="process:ContractInput" xmi:id="_CcS9uW58EequwMTVpq0wag" name="quantity" type="INTEGER" createMode="false"/>
+                <inputs xmi:type="process:ContractInput" xmi:id="_CcS9um58EequwMTVpq0wag" name="amount" type="INTEGER" createMode="false"/>
+              </inputs>
+            </inputs>
+            <constraints xmi:type="process:ContractConstraint" xmi:id="_CcS9u258EequwMTVpq0wag" expression="!invoiceInput?.customer || invoiceInput?.customer?.persistenceId_string" errorMessage="Customer must reference an existing instance with a persistenceId for Invoice" name="aggregation_invoiceInput_customer">
+              <inputNames>invoiceInput</inputNames>
+            </constraints>
+          </contract>
+          <expectedDuration xmi:type="expression:Expression" xmi:id="_CcS9vG58EequwMTVpq0wag" name="" content="" returnType="java.lang.Long" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:Task" xmi:id="_CcS9vW58EequwMTVpq0wag" name="Check invoice file" outgoing="_CcS-QG58EequwMTVpq0wag" incoming="_CcS-PW58EequwMTVpq0wag" overrideActorsOfTheLane="false">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_CcS9vm58EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_CcS9v258EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_CcS9wG58EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_CcS9wW58EequwMTVpq0wag" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_CcS9wm58EequwMTVpq0wag" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_CcS9w258EequwMTVpq0wag" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_CcS9xG58EequwMTVpq0wag" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_CcS9xW58EequwMTVpq0wag" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <formMapping xmi:type="process:FormMapping" xmi:id="_CcS9xm58EequwMTVpq0wag">
+            <targetForm xmi:type="expression:Expression" xmi:id="_CcS9x258EequwMTVpq0wag" name="checkFinalInvoice" content="230b1dfa-dab4-4034-bdb1-830c5404beb4" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
+          </formMapping>
+          <contract xmi:type="process:Contract" xmi:id="_CcS9yG58EequwMTVpq0wag"/>
+          <expectedDuration xmi:type="expression:Expression" xmi:id="_CcS9yW58EequwMTVpq0wag" name="" content="" returnType="java.lang.Long" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ServiceTask" xmi:id="_CcS9ym58EequwMTVpq0wag" name="Generate invoice file" outgoing="_CcS-PW58EequwMTVpq0wag" incoming="_CcS-Om58EequwMTVpq0wag">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_CcS9y258EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_CcS9zG58EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_CcS9zW58EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+          <connectors xmi:type="process:Connector" xmi:id="_CcS9zm58EequwMTVpq0wag" name="generateInvoice" definitionId="document-templating" event="ON_FINISH" definitionVersion="1.0.1">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_CcS9z258EequwMTVpq0wag" definitionId="document-templating" version="1.0.1" modelVersion="7.10.0-001">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_CcS90G58EequwMTVpq0wag" key="documentInput">
+                <expression xmi:type="expression:Expression" xmi:id="_CcS90W58EequwMTVpq0wag" name="invoiceTemplate" content="invoiceTemplate" type="DOCUMENT_REF_TYPE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Document" xmi:id="_CcS90m58EequwMTVpq0wag" name="invoiceTemplate"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_CcS90258EequwMTVpq0wag" key="replacements">
+                <expression xmi:type="expression:TableExpression" xmi:id="_CcS91G58EequwMTVpq0wag">
+                  <expressions xmi:type="expression:ListExpression" xmi:id="_CcS99W58EequwMTVpq0wag">
+                    <expressions xmi:type="expression:Expression" xmi:id="_CcS99m58EequwMTVpq0wag" name="customer" content="customer" returnTypeFixed="true"/>
+                    <expressions xmi:type="expression:Expression" xmi:id="_CcS99258EequwMTVpq0wag" name="getCustomer" content="customer" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.invoice.model.Customer">
+                      <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_CcS9-G58EequwMTVpq0wag" name="customer" dataType="_CcS-dW58EequwMTVpq0wag" className="com.invoice.model.Customer"/>
+                    </expressions>
+                  </expressions>
+                  <expressions xmi:type="expression:ListExpression" xmi:id="_CcS9-W58EequwMTVpq0wag">
+                    <expressions xmi:type="expression:Expression" xmi:id="_CcS9-m58EequwMTVpq0wag" name="invoiceNumber" content="invoiceNumber" returnTypeFixed="true"/>
+                    <expressions xmi:type="expression:Expression" xmi:id="_CcS9-258EequwMTVpq0wag" name="getInvoiceNumber" content="invoice.invoiceNumber" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT">
+                      <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_CcS9_G58EequwMTVpq0wag" name="invoice" dataType="_CcS-dW58EequwMTVpq0wag" className="com.invoice.model.Invoice"/>
+                    </expressions>
+                  </expressions>
+                  <expressions xmi:type="expression:ListExpression" xmi:id="_CcS9_W58EequwMTVpq0wag">
+                    <expressions xmi:type="expression:Expression" xmi:id="_CcS9_m58EequwMTVpq0wag" name="invoiceDate" content="invoiceDate" returnTypeFixed="true"/>
+                    <expressions xmi:type="expression:Expression" xmi:id="_CcS9_258EequwMTVpq0wag" name="getInvoiceDate" content="invoice.invoiceDate.toString()" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT">
+                      <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_CcS-AG58EequwMTVpq0wag" name="invoice" dataType="_CcS-dW58EequwMTVpq0wag" className="com.invoice.model.Invoice"/>
+                    </expressions>
+                  </expressions>
+                  <expressions xmi:type="expression:ListExpression" xmi:id="_CcS-AW58EequwMTVpq0wag">
+                    <expressions xmi:type="expression:Expression" xmi:id="_CcS-Am58EequwMTVpq0wag" name="total" content="total" returnTypeFixed="true"/>
+                    <expressions xmi:type="expression:Expression" xmi:id="_CcS-A258EequwMTVpq0wag" name="getTotal" content="invoice.total.toString()" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT">
+                      <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_CcS-BG58EequwMTVpq0wag" name="invoice" dataType="_CcS-dW58EequwMTVpq0wag" className="com.invoice.model.Invoice"/>
+                    </expressions>
+                  </expressions>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_CcS-BW58EequwMTVpq0wag" key="outputFileName">
+                <expression xmi:type="expression:Expression" xmi:id="_CcS-Bm58EequwMTVpq0wag" name="finalInvoice.docx" content="finalInvoice.docx" returnTypeFixed="true"/>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_CcS-B258EequwMTVpq0wag">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_CcS-CG58EequwMTVpq0wag" name="invoiceDoc" content="invoiceDoc" type="DOCUMENT_REF_TYPE">
+                <referencedElements xmi:type="process:Document" xmi:id="_CcS-CW58EequwMTVpq0wag" name="invoiceDoc"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_CcS-Cm58EequwMTVpq0wag" name="document" content="document" type="CONNECTOR_OUTPUT_TYPE" returnType="org.bonitasoft.engine.bpm.document.DocumentValue">
+                <referencedElements xmi:type="definition:Output" xmi:id="_CcS-C258EequwMTVpq0wag" name="document" type="org.bonitasoft.engine.bpm.document.DocumentValue"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_CcS-DG58EequwMTVpq0wag" type="DOCUMENT_CREATE_UPDATE"/>
+            </outputs>
+          </connectors>
+          <connectors xmi:type="process:Connector" xmi:id="_CcS-DW58EequwMTVpq0wag" name="generateInvoicePDF" definitionId="document-converter" event="ON_FINISH" definitionVersion="1.0.2">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_CcS-Dm58EequwMTVpq0wag" definitionId="document-converter" version="1.0.2" modelVersion="7.10.0-001">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_CcS-D258EequwMTVpq0wag" key="sourceDocument">
+                <expression xmi:type="expression:Expression" xmi:id="_CcS-EG58EequwMTVpq0wag" name="invoiceDoc" content="invoiceDoc" type="DOCUMENT_REF_TYPE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Document" xmi:id="_CcS-EW58EequwMTVpq0wag" name="invoiceDoc"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_CcS-Em58EequwMTVpq0wag" key="encoding">
+                <expression xmi:type="expression:Expression" xmi:id="_CcS-E258EequwMTVpq0wag" name="windows-1252" content="windows-1252" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_CcS-FG58EequwMTVpq0wag" key="outputFileName">
+                <expression xmi:type="expression:Expression" xmi:id="_CcS-FW58EequwMTVpq0wag" name="finalInvoice.pdf" content="finalInvoice.pdf" returnTypeFixed="true"/>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_CcS-Fm58EequwMTVpq0wag">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_CcS-F258EequwMTVpq0wag" name="finalInvoice" content="finalInvoice" type="DOCUMENT_REF_TYPE">
+                <referencedElements xmi:type="process:Document" xmi:id="_CcS-GG58EequwMTVpq0wag" name="finalInvoice"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_CcS-GW58EequwMTVpq0wag" name="outputDocumentValue" content="outputDocumentValue" type="CONNECTOR_OUTPUT_TYPE" returnType="org.bonitasoft.engine.bpm.document.DocumentValue">
+                <referencedElements xmi:type="definition:Output" xmi:id="_CcS-Gm58EequwMTVpq0wag" name="outputDocumentValue" type="org.bonitasoft.engine.bpm.document.DocumentValue"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_CcS-G258EequwMTVpq0wag" type="DOCUMENT_CREATE_UPDATE"/>
+            </outputs>
+          </connectors>
+          <operations xmi:type="expression:Operation" xmi:id="_CcS-HG58EequwMTVpq0wag">
+            <leftOperand xmi:type="expression:Expression" xmi:id="_CcS-HW58EequwMTVpq0wag" name="customer" content="customer" type="TYPE_VARIABLE" returnType="com.invoice.model.Customer">
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_CcS-Hm58EequwMTVpq0wag" name="customer" dataType="_CcS-dW58EequwMTVpq0wag" className="com.invoice.model.Customer"/>
+            </leftOperand>
+            <rightOperand xmi:type="expression:Expression" xmi:id="_CcS-H258EequwMTVpq0wag" name="getInvoiceCustomer" content="customerDAO.findByPersistenceId(invoice.customer.persistenceId)" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.invoice.model.Customer">
+              <referencedElements xmi:type="expression:Expression" xmi:id="_CcS-IG58EequwMTVpq0wag" name="customerDAO" content="customerDAO" type="TYPE_BUSINESS_OBJECT_DAO" returnType="com.invoice.model.CustomerDAO" returnTypeFixed="true"/>
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_CcS-IW58EequwMTVpq0wag" name="invoice" dataType="_CcS-dW58EequwMTVpq0wag" className="com.invoice.model.Invoice"/>
+            </rightOperand>
+            <operator xmi:type="expression:Operator" xmi:id="_CcS-Im58EequwMTVpq0wag" type="ASSIGNMENT"/>
+          </operations>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_CcS-I258EequwMTVpq0wag" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_CcS-JG58EequwMTVpq0wag" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_CcS-JW58EequwMTVpq0wag" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_CcS-Jm58EequwMTVpq0wag" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_CcS-J258EequwMTVpq0wag" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:EndEvent" xmi:id="_CcS-KG58EequwMTVpq0wag" name="End invoice" incoming="_CcS-QG58EequwMTVpq0wag">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_CcS-KW58EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_CcS-Km58EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_CcS-K258EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+        </elements>
+      </elements>
+      <data xmi:type="process:BusinessObjectData" xmi:id="_CcS-LG58EequwMTVpq0wag" name="invoice" dataType="_CcS-dW58EequwMTVpq0wag" className="com.invoice.model.Invoice">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_CcS-LW58EequwMTVpq0wag" name="init_invoices" content="def invoiceVar = new com.invoice.model.Invoice()&#xD;&#xA;invoiceVar.invoiceDate = invoiceInput?.invoiceDate&#xD;&#xA;&#xD;&#xA;invoiceVar.total = invoiceInput?.total&#xD;&#xA;&#xD;&#xA;invoiceVar.customer = {&#xD;&#xA;&#x9;//Retrieve aggregated Customer using its DAO and persistenceId&#xD;&#xA;&#x9;def customerVar = customerDAO.findByPersistenceId(invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null)&#xD;&#xA;&#x9;if (!customerVar) {&#xD;&#xA;&#x9;&#x9;if (invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null) {&#xD;&#xA;&#x9;&#x9;&#x9;throw new IllegalArgumentException(&quot;The aggregated reference of type `Customer` with the persistence id &quot; + invoiceInput?.customer?.persistenceId_string?.trim() ? invoiceInput.customer.persistenceId_string.toLong() : null + &quot; has not been found.&quot;)&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;return null&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return customerVar}()&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;invoiceVar.invoiceLines = {&#xD;&#xA;&#x9;def invoiceLineList = []&#xD;&#xA;&#x9;//For each item collected in multiple input&#xD;&#xA;&#x9;invoiceInput?.invoiceLines.each{&#xD;&#xA;&#x9;&#x9;//Add a new composed InvoiceLine instance&#xD;&#xA;&#x9;&#x9;invoiceLineList.add({ currentInvoiceLineInput ->&#xD;&#xA;&#x9;&#x9;&#x9;def invoiceLineVar = new com.invoice.model.InvoiceLine()&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.description = currentInvoiceLineInput.description&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.quantity = currentInvoiceLineInput.quantity&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.amount = currentInvoiceLineInput.amount&#xD;&#xA;&#x9;&#x9;&#x9;invoiceLineVar.rate = currentInvoiceLineInput.rate&#xD;&#xA;&#x9;&#x9;&#x9;return invoiceLineVar&#xD;&#xA;&#x9;&#x9;}(it))&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return invoiceLineList}()&#xD;&#xA;&#xD;&#xA;invoiceVar.status = &quot;pending&quot;&#xD;&#xA;invoiceVar.invoiceNumber = processInstanceId.toString()&#xD;&#xA;&#xD;&#xA;return invoiceVar" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.invoice.model.Invoice">
+          <referencedElements xmi:type="expression:Expression" xmi:id="_CcS-Lm58EequwMTVpq0wag" name="processInstanceId" content="processInstanceId" type="TYPE_ENGINE_CONSTANT" returnType="java.lang.Long"/>
+          <referencedElements xmi:type="process:ContractInput" xmi:id="_CcS-L258EequwMTVpq0wag" name="invoiceInput" type="COMPLEX"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_CcS-MG58EequwMTVpq0wag" name="customerDAO" content="customerDAO" type="TYPE_BUSINESS_OBJECT_DAO" returnType="com.invoice.model.CustomerDAO" returnTypeFixed="true"/>
+        </defaultValue>
+      </data>
+      <data xmi:type="process:BusinessObjectData" xmi:id="_CcS-MW58EequwMTVpq0wag" name="customer" dataType="_CcS-dW58EequwMTVpq0wag" className="com.invoice.model.Customer">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_CcS-Mm58EequwMTVpq0wag" name="" content="" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.lang.Object"/>
+      </data>
+      <formMapping xmi:type="process:FormMapping" xmi:id="_CcS-M258EequwMTVpq0wag">
+        <targetForm xmi:type="expression:Expression" xmi:id="_CcS-NG58EequwMTVpq0wag" name="createInvoice" content="07131f00-6af0-4584-b18e-cffd98bbbffc" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
+      </formMapping>
+      <overviewFormMapping xmi:type="process:FormMapping" xmi:id="_CcS-NW58EequwMTVpq0wag">
+        <targetForm xmi:type="expression:Expression" xmi:id="_CcS-Nm58EequwMTVpq0wag" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
+      </overviewFormMapping>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_CcS-N258EequwMTVpq0wag" target="_CcS9d258EequwMTVpq0wag" source="_CcS9c258EequwMTVpq0wag">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_CcS-OG58EequwMTVpq0wag"/>
+        <condition xmi:type="expression:Expression" xmi:id="_CcS-OW58EequwMTVpq0wag" name="" type="TYPE_CONDITION" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_CcS-Om58EequwMTVpq0wag" target="_CcS9ym58EequwMTVpq0wag" source="_CcS9d258EequwMTVpq0wag">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_CcS-O258EequwMTVpq0wag"/>
+        <condition xmi:type="expression:Expression" xmi:id="_CcS-PG58EequwMTVpq0wag" name="" type="TYPE_CONDITION" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_CcS-PW58EequwMTVpq0wag" target="_CcS9vW58EequwMTVpq0wag" source="_CcS9ym58EequwMTVpq0wag">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_CcS-Pm58EequwMTVpq0wag"/>
+        <condition xmi:type="expression:Expression" xmi:id="_CcS-P258EequwMTVpq0wag" name="" type="TYPE_CONDITION" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_CcS-QG58EequwMTVpq0wag" target="_CcS-KG58EequwMTVpq0wag" source="_CcS9vW58EequwMTVpq0wag">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_CcS-QW58EequwMTVpq0wag"/>
+        <condition xmi:type="expression:Expression" xmi:id="_CcS-Qm58EequwMTVpq0wag" name="" type="TYPE_CONDITION" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <actors xmi:type="process:Actor" xmi:id="_CcS-Q258EequwMTVpq0wag" documentation="This is an example of actor that is mapped to any ACME users" name="Employee actor" initiator="true"/>
+      <contract xmi:type="process:Contract" xmi:id="_CcS-RG58EequwMTVpq0wag">
+        <inputs xmi:type="process:ContractInput" xmi:id="_CcS-RW58EequwMTVpq0wag" name="invoiceInput" type="COMPLEX" dataReference="invoice">
+          <inputs xmi:type="process:ContractInput" xmi:id="_CcS-Rm58EequwMTVpq0wag" name="invoiceDate" type="LOCALDATE"/>
+          <inputs xmi:type="process:ContractInput" xmi:id="_CcS-R258EequwMTVpq0wag" name="total" type="INTEGER"/>
+          <inputs xmi:type="process:ContractInput" xmi:id="_CcS-SG58EequwMTVpq0wag" name="customer" type="COMPLEX">
+            <inputs xmi:type="process:ContractInput" xmi:id="_CcS-SW58EequwMTVpq0wag" name="persistenceId_string"/>
+          </inputs>
+          <inputs xmi:type="process:ContractInput" xmi:id="_CcS-Sm58EequwMTVpq0wag" name="invoiceLines" type="COMPLEX" multiple="true">
+            <inputs xmi:type="process:ContractInput" xmi:id="_CcS-S258EequwMTVpq0wag" name="description"/>
+            <inputs xmi:type="process:ContractInput" xmi:id="_CcS-TG58EequwMTVpq0wag" name="quantity" type="INTEGER"/>
+            <inputs xmi:type="process:ContractInput" xmi:id="_CcS-TW58EequwMTVpq0wag" name="amount" type="INTEGER"/>
+            <inputs xmi:type="process:ContractInput" xmi:id="_CcS-Tm58EequwMTVpq0wag" name="rate" type="INTEGER">
+              <mapping xmi:type="process:ContractInputMapping" xmi:id="_CcS-T258EequwMTVpq0wag"/>
+            </inputs>
+          </inputs>
+        </inputs>
+        <constraints xmi:type="process:ContractConstraint" xmi:id="_CcS-UG58EequwMTVpq0wag" expression="invoiceInput?.invoiceDate != null" errorMessage="invoiceDate is mandatory for Invoice" name="mandatory_invoiceInput_invoiceDate">
+          <inputNames>invoiceInput</inputNames>
+        </constraints>
+        <constraints xmi:type="process:ContractConstraint" xmi:id="_CcS-UW58EequwMTVpq0wag" expression="invoiceInput?.total != null" errorMessage="total is mandatory for Invoice" name="mandatory_invoiceInput_total">
+          <inputNames>invoiceInput</inputNames>
+        </constraints>
+      </contract>
+      <documents xmi:type="process:Document" xmi:id="_CcS-Um58EequwMTVpq0wag" name="invoiceDoc">
+        <mimeType xmi:type="expression:Expression" xmi:id="_CcS-U258EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+        <url xmi:type="expression:Expression" xmi:id="_CcS-VG58EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+        <initialMultipleContent xmi:type="expression:Expression" xmi:id="_CcS-VW58EequwMTVpq0wag" name="" content="" type="TYPE_READ_ONLY_SCRIPT" returnType="java.util.List" returnTypeFixed="true"/>
+      </documents>
+      <documents xmi:type="process:Document" xmi:id="_CcS-Vm58EequwMTVpq0wag" name="invoiceTemplate" defaultValueIdOfDocumentStore="Invoice_template.docx" documentType="INTERNAL">
+        <mimeType xmi:type="expression:Expression" xmi:id="_CcS-V258EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+        <url xmi:type="expression:Expression" xmi:id="_CcS-WG58EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+        <initialMultipleContent xmi:type="expression:Expression" xmi:id="_CcS-WW58EequwMTVpq0wag" name="" content="" type="TYPE_READ_ONLY_SCRIPT" returnType="java.util.List" returnTypeFixed="true"/>
+      </documents>
+      <documents xmi:type="process:Document" xmi:id="_CcS-Wm58EequwMTVpq0wag" name="finalInvoice">
+        <mimeType xmi:type="expression:Expression" xmi:id="_CcS-W258EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+        <url xmi:type="expression:Expression" xmi:id="_CcS-XG58EequwMTVpq0wag" name="" content="" returnTypeFixed="true"/>
+        <initialMultipleContent xmi:type="expression:Expression" xmi:id="_CcS-XW58EequwMTVpq0wag" name="" content="" type="TYPE_READ_ONLY_SCRIPT" returnType="java.util.List" returnTypeFixed="true"/>
+      </documents>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_CcS-Xm58EequwMTVpq0wag">
+        <name xmi:type="expression:Expression" xmi:id="_CcS-X258EequwMTVpq0wag" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_CcS-YG58EequwMTVpq0wag" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_CcS-YW58EequwMTVpq0wag">
+        <name xmi:type="expression:Expression" xmi:id="_CcS-Ym58EequwMTVpq0wag" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_CcS-Y258EequwMTVpq0wag" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_CcS-ZG58EequwMTVpq0wag">
+        <name xmi:type="expression:Expression" xmi:id="_CcS-ZW58EequwMTVpq0wag" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_CcS-Zm58EequwMTVpq0wag" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_CcS-Z258EequwMTVpq0wag">
+        <name xmi:type="expression:Expression" xmi:id="_CcS-aG58EequwMTVpq0wag" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_CcS-aW58EequwMTVpq0wag" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_CcS-am58EequwMTVpq0wag">
+        <name xmi:type="expression:Expression" xmi:id="_CcS-a258EequwMTVpq0wag" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_CcS-bG58EequwMTVpq0wag" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+    </elements>
+    <datatypes xmi:type="process:BooleanType" xmi:id="_CcS-bW58EequwMTVpq0wag" name="Boolean"/>
+    <datatypes xmi:type="process:DateType" xmi:id="_CcS-bm58EequwMTVpq0wag" name="Date"/>
+    <datatypes xmi:type="process:IntegerType" xmi:id="_CcS-b258EequwMTVpq0wag" name="Integer"/>
+    <datatypes xmi:type="process:LongType" xmi:id="_CcS-cG58EequwMTVpq0wag" name="Long"/>
+    <datatypes xmi:type="process:DoubleType" xmi:id="_CcS-cW58EequwMTVpq0wag" name="Double"/>
+    <datatypes xmi:type="process:StringType" xmi:id="_CcS-cm58EequwMTVpq0wag" name="Text"/>
+    <datatypes xmi:type="process:JavaType" xmi:id="_CcS-c258EequwMTVpq0wag" name="Java_object"/>
+    <datatypes xmi:type="process:XMLType" xmi:id="_CcS-dG58EequwMTVpq0wag" name="XML"/>
+    <datatypes xmi:type="process:BusinessObjectType" xmi:id="_CcS-dW58EequwMTVpq0wag" name="Business_Object"/>
+  </process:MainProcess>
+  <notation:Diagram xmi:id="_CcS-dm58EequwMTVpq0wag" type="Process" element="_CcS9cG58EequwMTVpq0wag" name="MyDiagram" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_CcS-d258EequwMTVpq0wag" type="2007" element="_CcS9cW58EequwMTVpq0wag">
+      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-eG58EequwMTVpq0wag" type="5008"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-eW58EequwMTVpq0wag" type="7001">
+        <children xmi:type="notation:Node" xmi:id="_CcS-em58EequwMTVpq0wag" type="3007" element="_CcS9cm58EequwMTVpq0wag">
+          <children xmi:type="notation:DecorationNode" xmi:id="_CcS-e258EequwMTVpq0wag" type="5007"/>
+          <children xmi:type="notation:DecorationNode" xmi:id="_CcS-fG58EequwMTVpq0wag" type="7002">
+            <children xmi:type="notation:Shape" xmi:id="_CcS-fW58EequwMTVpq0wag" type="3005" element="_CcS9d258EequwMTVpq0wag" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_CcS-fm58EequwMTVpq0wag" type="5005"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CcS-f258EequwMTVpq0wag" x="237" y="134"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_CcS-gG58EequwMTVpq0wag" type="3002" element="_CcS9c258EequwMTVpq0wag" fontName="Segoe UI">
+              <children xmi:type="notation:DecorationNode" xmi:id="_CcS-gW58EequwMTVpq0wag" type="5024">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_CcS-gm58EequwMTVpq0wag" y="5"/>
+              </children>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CcS-g258EequwMTVpq0wag" x="137" y="142"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_CcS-hG58EequwMTVpq0wag" type="3005" element="_CcS9vW58EequwMTVpq0wag" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_CcS-hW58EequwMTVpq0wag" type="5005"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CcS-hm58EequwMTVpq0wag" x="575" y="132" width="100" height="50"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_CcS-h258EequwMTVpq0wag" type="3027" element="_CcS9ym58EequwMTVpq0wag" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_CcS-iG58EequwMTVpq0wag" type="5017"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CcS-iW58EequwMTVpq0wag" x="398" y="132" width="120" height="60"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_CcS-im58EequwMTVpq0wag" type="3003" element="_CcS-KG58EequwMTVpq0wag" fontName="Segoe UI">
+              <children xmi:type="notation:DecorationNode" xmi:id="_CcS-i258EequwMTVpq0wag" type="5025">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_CcS-jG58EequwMTVpq0wag" y="5"/>
+              </children>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CcS-jW58EequwMTVpq0wag" x="778" y="145"/>
+            </children>
+          </children>
+          <styles xmi:type="notation:DescriptionStyle" xmi:id="_CcS-jm58EequwMTVpq0wag"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_CcS-j258EequwMTVpq0wag" fontName="Segoe UI"/>
+          <styles xmi:type="notation:LineStyle" xmi:id="_CcS-kG58EequwMTVpq0wag"/>
+          <styles xmi:type="notation:FillStyle" xmi:id="_CcS-kW58EequwMTVpq0wag"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CcS-km58EequwMTVpq0wag" x="48" y="10" width="1297" height="313"/>
+        </children>
+      </children>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_CcS-k258EequwMTVpq0wag"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_CcS-lG58EequwMTVpq0wag" fontName="Segoe UI"/>
+      <styles xmi:type="notation:LineStyle" xmi:id="_CcS-lW58EequwMTVpq0wag"/>
+      <styles xmi:type="notation:FillStyle" xmi:id="_CcS-lm58EequwMTVpq0wag"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CcS-l258EequwMTVpq0wag" width="1320" height="250"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_CcS-mG58EequwMTVpq0wag"/>
+    <edges xmi:type="notation:Connector" xmi:id="_CcS-mW58EequwMTVpq0wag" type="4001" element="_CcS-N258EequwMTVpq0wag" source="_CcS-gG58EequwMTVpq0wag" target="_CcS-fW58EequwMTVpq0wag" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-mm58EequwMTVpq0wag" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_CcS-m258EequwMTVpq0wag" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_CcS-nG58EequwMTVpq0wag" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_CcS-nW58EequwMTVpq0wag" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_CcS-nm58EequwMTVpq0wag" type="4001" element="_CcS-Om58EequwMTVpq0wag" source="_CcS-fW58EequwMTVpq0wag" target="_CcS-h258EequwMTVpq0wag" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-n258EequwMTVpq0wag" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_CcS-oG58EequwMTVpq0wag" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_CcS-oW58EequwMTVpq0wag" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_CcS-om58EequwMTVpq0wag" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_CcS-o258EequwMTVpq0wag" type="4001" element="_CcS-PW58EequwMTVpq0wag" source="_CcS-h258EequwMTVpq0wag" target="_CcS-hG58EequwMTVpq0wag" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-pG58EequwMTVpq0wag" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_CcS-pW58EequwMTVpq0wag" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_CcS-pm58EequwMTVpq0wag" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_CcS-p258EequwMTVpq0wag" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_CcS-qG58EequwMTVpq0wag" type="4001" element="_CcS-QG58EequwMTVpq0wag" source="_CcS-hG58EequwMTVpq0wag" target="_CcS-im58EequwMTVpq0wag" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-qW58EequwMTVpq0wag" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_CcS-qm58EequwMTVpq0wag" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_CcS-q258EequwMTVpq0wag" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_CcS-rG58EequwMTVpq0wag" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    </edges>
+  </notation:Diagram>
+</xmi:XMI>
