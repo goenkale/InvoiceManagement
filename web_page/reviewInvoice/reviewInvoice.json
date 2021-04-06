@@ -1,8 +1,9 @@
 {
-  "designerVersion" : "1.10.50",
+  "modelVersion" : "2.0",
+  "previousArtifactVersion" : "1.10.50",
   "id" : "reviewInvoice",
   "name" : "reviewInvoice",
-  "lastUpdate" : 1585150706443,
+  "lastUpdate" : 1617377381923,
   "rows" : [
     [
       {

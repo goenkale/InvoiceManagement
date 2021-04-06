@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:connectorconfiguration="http://wwww.bonitasoft.org/model/connector/configuration" xmlns:decision="http://www.bonitasoft.org/ns/studio/process/decision" xmlns:definition="http://www.bonitasoft.org/ns/connector/definition/6.1" xmlns:expression="http://www.bonitasoft.org/ns/studio/expression" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:process="http://www.bonitasoft.org/ns/studio/process" xsi:schemaLocation="http://www.bonitasoft.org/ns/studio/process/decision http://www.bonitasoft.org/ns/studio/process#//decision">
-  <process:MainProcess xmi:id="_ewJGMG5_Eeq1DpGQiujW7w" name="InvoiceManagement" version="6.0" author="Bonitasoft" bonitaVersion="7.10.5" bonitaModelVersion="7.10.0-001" configId="ACED0005740023496E766F6963654D616E6167656D656E74372E31302E302D303031372E31302E357370">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:actormapping="http://www.bonitasoft.org/ns/actormapping/6.0" xmlns:configuration="http://www.bonitasoft.org/ns/studio/configuration" xmlns:connectorconfiguration="http://wwww.bonitasoft.org/model/connector/configuration" xmlns:decision="http://www.bonitasoft.org/ns/studio/process/decision" xmlns:definition="http://www.bonitasoft.org/ns/connector/definition/6.1" xmlns:expression="http://www.bonitasoft.org/ns/studio/expression" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:process="http://www.bonitasoft.org/ns/studio/process" xsi:schemaLocation="http://www.bonitasoft.org/ns/studio/process/decision http://www.bonitasoft.org/ns/studio/process#//decision">
+  <process:MainProcess xmi:id="_ewJGMG5_Eeq1DpGQiujW7w" name="InvoiceManagement" version="6.0" author="Bonitasoft" bonitaVersion="7.12.2" bonitaModelVersion="7.12.0-004" configId="ACED0005740023496E766F6963654D616E6167656D656E74372E31302E302D303031372E31302E357370">
     <elements xmi:type="process:Pool" xmi:id="_ewJGMW5_Eeq1DpGQiujW7w" name="InvoiceManagement" version="6.0">
       <elements xmi:type="process:Lane" xmi:id="_ewJGMm5_Eeq1DpGQiujW7w" name="Employee lane" actor="_ewJtsW5_Eeq1DpGQiujW7w">
         <elements xmi:type="process:StartEvent" xmi:id="_ewJGM25_Eeq1DpGQiujW7w" name="Create invoice" outgoing="_ewJtpW5_Eeq1DpGQiujW7w">
@@ -285,6 +285,87 @@
         <condition xmi:type="expression:Expression" xmi:id="_ewJtsG5_Eeq1DpGQiujW7w" name="" type="TYPE_CONDITION" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <actors xmi:type="process:Actor" xmi:id="_ewJtsW5_Eeq1DpGQiujW7w" documentation="This is an example of actor that is mapped to any ACME users" name="Employee actor" initiator="true"/>
+      <configurations xmi:type="configuration:Configuration" xmi:id="_oq45YJbrEeuve7MZb67s4Q" name="Production" version="7.12.0-004" username="walter.bates" password="bpm">
+        <actorMappings xmi:type="actormapping:ActorMappingsType" xmi:id="_oq45o5brEeuve7MZb67s4Q">
+          <actorMapping xmi:type="actormapping:ActorMapping" xmi:id="_oq45pJbrEeuve7MZb67s4Q" name="Employee actor">
+            <groups xmi:type="actormapping:Groups" xmi:id="_oq45pZbrEeuve7MZb67s4Q"/>
+            <memberships xmi:type="actormapping:Membership" xmi:id="_oq45ppbrEeuve7MZb67s4Q"/>
+            <roles xmi:type="actormapping:Roles" xmi:id="_oq45p5brEeuve7MZb67s4Q">
+              <role>member</role>
+            </roles>
+            <users xmi:type="actormapping:Users" xmi:id="_oq45qJbrEeuve7MZb67s4Q"/>
+          </actorMapping>
+        </actorMappings>
+        <definitionMappings xmi:type="configuration:DefinitionMapping" xmi:id="_oq45YZbrEeuve7MZb67s4Q" type="CONNECTOR" definitionId="document-templating" definitionVersion="1.0.1" implementationId="document-templating-impl" implementationVersion="2.1.0"/>
+        <definitionMappings xmi:type="configuration:DefinitionMapping" xmi:id="_oq45YpbrEeuve7MZb67s4Q" type="CONNECTOR" definitionId="document-converter" definitionVersion="1.0.2" implementationId="document-converter-impl" implementationVersion="2.1.0"/>
+        <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_oq45Y5brEeuve7MZb67s4Q" id="ACTOR_FILTER"/>
+        <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_oq45ZJbrEeuve7MZb67s4Q" id="CONNECTOR">
+          <children xmi:type="configuration:FragmentContainer" xmi:id="_oq45ZZbrEeuve7MZb67s4Q" id="document-templating-impl-2.1.0">
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45ZpbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="bonita-connector-document-templating-2.1.0.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45Z5brEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="commons-collections-3.2.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45aJbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="commons-lang-2.4.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45aZbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="commons-lang3-3.3.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45apbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="commons-text-1.8.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45a5brEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="fr.opensagres.odfdom.converter.core-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45bJbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="fr.opensagres.odfdom.converter.pdf-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45bZbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="fr.opensagres.odfdom.converter.xhtml-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45bpbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="fr.opensagres.xdocreport.converter-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45b5brEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="fr.opensagres.xdocreport.converter.odt.odfdom-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45cJbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="fr.opensagres.xdocreport.core-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45cZbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="fr.opensagres.xdocreport.document-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45cpbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="fr.opensagres.xdocreport.document.docx-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45c5brEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="fr.opensagres.xdocreport.document.odt-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45dJbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="fr.opensagres.xdocreport.itext.extension-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45dZbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="fr.opensagres.xdocreport.template-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45dpbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="fr.opensagres.xdocreport.template.velocity-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45d5brEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="itext-2.1.7.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45eJbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="odfdom-java-0.8.7.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45eZbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="oro-2.0.8.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45epbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="velocity-1.7.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45e5brEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="velocity-tools-generic-1.4.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45fJbrEeuve7MZb67s4Q" key="document-templating-impl -- 2.1.0" value="xercesImpl-2.9.1.jar" type="CONNECTOR"/>
+          </children>
+          <children xmi:type="configuration:FragmentContainer" xmi:id="_oq45fZbrEeuve7MZb67s4Q" id="document-converter-impl-2.1.0">
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45fpbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="bonita-connector-document-converter-2.1.0.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45f5brEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="commons-collections-3.2.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45gJbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="commons-compress-1.18.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45gZbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="commons-lang-2.4.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45gpbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="commons-lang3-3.3.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45g5brEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="commons-math3-3.6.1.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45hJbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="commons-text-1.8.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45hZbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="curvesapi-1.05.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45hpbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.odfdom.converter.core-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45h5brEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.odfdom.converter.pdf-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45iJbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.odfdom.converter.xhtml-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45iZbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.poi.xwpf.converter.core-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45ipbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.poi.xwpf.converter.pdf-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45i5brEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.poi.xwpf.converter.xhtml-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45jJbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.xdocreport.converter-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45jZbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.xdocreport.converter.docx.xwpf-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45jpbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.xdocreport.converter.odt.odfdom-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45j5brEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.xdocreport.core-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45kJbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.xdocreport.document-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45kZbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.xdocreport.document.docx-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45kpbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.xdocreport.document.odt-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45k5brEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.xdocreport.itext.extension-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45lJbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.xdocreport.template-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45lZbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="fr.opensagres.xdocreport.template.velocity-2.0.2.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45lpbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="itext-2.1.7.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45l5brEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="odfdom-java-0.8.7.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45mJbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="ooxml-schemas-1.4.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45mZbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="oro-2.0.8.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45mpbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="poi-4.0.1.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45m5brEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="poi-ooxml-4.0.1.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45nJbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="velocity-1.7.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45nZbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="xercesImpl-2.9.1.jar" type="CONNECTOR"/>
+            <fragments xmi:type="configuration:Fragment" xmi:id="_oq45npbrEeuve7MZb67s4Q" key="document-converter-impl -- 2.1.0" value="xmlbeans-3.0.1.jar" type="CONNECTOR"/>
+          </children>
+        </processDependencies>
+        <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_oq45n5brEeuve7MZb67s4Q" id="GROOVY_SCRIPT"/>
+        <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_oq45oJbrEeuve7MZb67s4Q" id="OTHER"/>
+        <applicationDependencies xmi:type="configuration:FragmentContainer" xmi:id="_oq45oZbrEeuve7MZb67s4Q" id="GROOVY_SCRIPT"/>
+        <applicationDependencies xmi:type="configuration:FragmentContainer" xmi:id="_oq45opbrEeuve7MZb67s4Q" id="OTHER"/>
+      </configurations>
       <contract xmi:type="process:Contract" xmi:id="_ewJtsm5_Eeq1DpGQiujW7w">
         <inputs xmi:type="process:ContractInput" xmi:id="_ewJts25_Eeq1DpGQiujW7w" name="invoiceInput" type="COMPLEX" dataReference="invoice">
           <inputs xmi:type="process:ContractInput" xmi:id="_ewJttG5_Eeq1DpGQiujW7w" name="invoiceDate" type="LOCALDATE"/>
@@ -365,31 +446,31 @@
   </process:MainProcess>
   <notation:Diagram xmi:id="_ewJt5G5_Eeq1DpGQiujW7w" type="Process" element="_ewJGMG5_Eeq1DpGQiujW7w" name="MyDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Node" xmi:id="_ewJt5W5_Eeq1DpGQiujW7w" type="2007" element="_ewJGMW5_Eeq1DpGQiujW7w">
-      <children xmi:type="notation:DecorationNode" xmi:id="_ewJt5m5_Eeq1DpGQiujW7w" type="5008"/>
-      <children xmi:type="notation:DecorationNode" xmi:id="_ewJt525_Eeq1DpGQiujW7w" type="7001">
+      <children xmi:type="notation:DecorationNode" xmi:id="_ewJt5m5_Eeq1DpGQiujW7w" type="5008" element="_ewJGMW5_Eeq1DpGQiujW7w"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_ewJt525_Eeq1DpGQiujW7w" type="7001" element="_ewJGMW5_Eeq1DpGQiujW7w">
         <children xmi:type="notation:Node" xmi:id="_ewJt6G5_Eeq1DpGQiujW7w" type="3007" element="_ewJGMm5_Eeq1DpGQiujW7w">
-          <children xmi:type="notation:DecorationNode" xmi:id="_ewJt6W5_Eeq1DpGQiujW7w" type="5007"/>
-          <children xmi:type="notation:DecorationNode" xmi:id="_ewJt6m5_Eeq1DpGQiujW7w" type="7002">
+          <children xmi:type="notation:DecorationNode" xmi:id="_ewJt6W5_Eeq1DpGQiujW7w" type="5007" element="_ewJGMm5_Eeq1DpGQiujW7w"/>
+          <children xmi:type="notation:DecorationNode" xmi:id="_ewJt6m5_Eeq1DpGQiujW7w" type="7002" element="_ewJGMm5_Eeq1DpGQiujW7w">
             <children xmi:type="notation:Shape" xmi:id="_ewJt625_Eeq1DpGQiujW7w" type="3005" element="_ewJGN25_Eeq1DpGQiujW7w" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
-              <children xmi:type="notation:DecorationNode" xmi:id="_ewJt7G5_Eeq1DpGQiujW7w" type="5005"/>
+              <children xmi:type="notation:DecorationNode" xmi:id="_ewJt7G5_Eeq1DpGQiujW7w" type="5005" element="_ewJGN25_Eeq1DpGQiujW7w"/>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ewJt7W5_Eeq1DpGQiujW7w" x="237" y="134"/>
             </children>
             <children xmi:type="notation:Shape" xmi:id="_ewJt7m5_Eeq1DpGQiujW7w" type="3002" element="_ewJGM25_Eeq1DpGQiujW7w" fontName="Segoe UI">
-              <children xmi:type="notation:DecorationNode" xmi:id="_ewJt725_Eeq1DpGQiujW7w" type="5024">
+              <children xmi:type="notation:DecorationNode" xmi:id="_ewJt725_Eeq1DpGQiujW7w" type="5024" element="_ewJGM25_Eeq1DpGQiujW7w">
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_ewJt8G5_Eeq1DpGQiujW7w" y="5"/>
               </children>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ewJt8W5_Eeq1DpGQiujW7w" x="137" y="142"/>
             </children>
             <children xmi:type="notation:Shape" xmi:id="_ewJt8m5_Eeq1DpGQiujW7w" type="3005" element="_ewJtS25_Eeq1DpGQiujW7w" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
-              <children xmi:type="notation:DecorationNode" xmi:id="_ewJt825_Eeq1DpGQiujW7w" type="5005"/>
+              <children xmi:type="notation:DecorationNode" xmi:id="_ewJt825_Eeq1DpGQiujW7w" type="5005" element="_ewJtS25_Eeq1DpGQiujW7w"/>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ewJt9G5_Eeq1DpGQiujW7w" x="575" y="132" width="100" height="50"/>
             </children>
             <children xmi:type="notation:Shape" xmi:id="_ewJt9W5_Eeq1DpGQiujW7w" type="3027" element="_ewJtWG5_Eeq1DpGQiujW7w" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
-              <children xmi:type="notation:DecorationNode" xmi:id="_ewJt9m5_Eeq1DpGQiujW7w" type="5017"/>
+              <children xmi:type="notation:DecorationNode" xmi:id="_ewJt9m5_Eeq1DpGQiujW7w" type="5017" element="_ewJtWG5_Eeq1DpGQiujW7w"/>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ewJt925_Eeq1DpGQiujW7w" x="398" y="132" width="120" height="60"/>
             </children>
             <children xmi:type="notation:Shape" xmi:id="_ewJt-G5_Eeq1DpGQiujW7w" type="3003" element="_ewJtlm5_Eeq1DpGQiujW7w" fontName="Segoe UI">
-              <children xmi:type="notation:DecorationNode" xmi:id="_ewJt-W5_Eeq1DpGQiujW7w" type="5025">
+              <children xmi:type="notation:DecorationNode" xmi:id="_ewJt-W5_Eeq1DpGQiujW7w" type="5025" element="_ewJtlm5_Eeq1DpGQiujW7w">
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_ewJt-m5_Eeq1DpGQiujW7w" y="5"/>
               </children>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ewJt-25_Eeq1DpGQiujW7w" x="778" y="145"/>
@@ -410,28 +491,28 @@
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_ewJuBm5_Eeq1DpGQiujW7w"/>
     <edges xmi:type="notation:Connector" xmi:id="_ewJuB25_Eeq1DpGQiujW7w" type="4001" element="_ewJtpW5_Eeq1DpGQiujW7w" source="_ewJt7m5_Eeq1DpGQiujW7w" target="_ewJt625_Eeq1DpGQiujW7w" roundedBendpointsRadius="10" routing="Rectilinear">
-      <children xmi:type="notation:DecorationNode" xmi:id="_ewJuCG5_Eeq1DpGQiujW7w" type="6001">
+      <children xmi:type="notation:DecorationNode" xmi:id="_ewJuCG5_Eeq1DpGQiujW7w" type="6001" element="_ewJtpW5_Eeq1DpGQiujW7w">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_ewJuCW5_Eeq1DpGQiujW7w" y="-10"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_ewJuCm5_Eeq1DpGQiujW7w" fontName="Segoe UI"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ewJuC25_Eeq1DpGQiujW7w" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_ewJuDG5_Eeq1DpGQiujW7w" type="4001" element="_ewJtqG5_Eeq1DpGQiujW7w" source="_ewJt625_Eeq1DpGQiujW7w" target="_ewJt9W5_Eeq1DpGQiujW7w" roundedBendpointsRadius="10" routing="Rectilinear">
-      <children xmi:type="notation:DecorationNode" xmi:id="_ewJuDW5_Eeq1DpGQiujW7w" type="6001">
+      <children xmi:type="notation:DecorationNode" xmi:id="_ewJuDW5_Eeq1DpGQiujW7w" type="6001" element="_ewJtqG5_Eeq1DpGQiujW7w">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_ewJuDm5_Eeq1DpGQiujW7w" y="-10"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_ewJuD25_Eeq1DpGQiujW7w" fontName="Segoe UI"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ewJuEG5_Eeq1DpGQiujW7w" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_ewJuEW5_Eeq1DpGQiujW7w" type="4001" element="_ewJtq25_Eeq1DpGQiujW7w" source="_ewJt9W5_Eeq1DpGQiujW7w" target="_ewJt8m5_Eeq1DpGQiujW7w" roundedBendpointsRadius="10" routing="Rectilinear">
-      <children xmi:type="notation:DecorationNode" xmi:id="_ewJuEm5_Eeq1DpGQiujW7w" type="6001">
+      <children xmi:type="notation:DecorationNode" xmi:id="_ewJuEm5_Eeq1DpGQiujW7w" type="6001" element="_ewJtq25_Eeq1DpGQiujW7w">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_ewJuE25_Eeq1DpGQiujW7w" y="-10"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_ewJuFG5_Eeq1DpGQiujW7w" fontName="Segoe UI"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ewJuFW5_Eeq1DpGQiujW7w" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_ewJuFm5_Eeq1DpGQiujW7w" type="4001" element="_ewJtrm5_Eeq1DpGQiujW7w" source="_ewJt8m5_Eeq1DpGQiujW7w" target="_ewJt-G5_Eeq1DpGQiujW7w" roundedBendpointsRadius="10" routing="Rectilinear">
-      <children xmi:type="notation:DecorationNode" xmi:id="_ewJuF25_Eeq1DpGQiujW7w" type="6001">
+      <children xmi:type="notation:DecorationNode" xmi:id="_ewJuF25_Eeq1DpGQiujW7w" type="6001" element="_ewJtrm5_Eeq1DpGQiujW7w">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_ewJuGG5_Eeq1DpGQiujW7w" y="-10"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_ewJuGW5_Eeq1DpGQiujW7w" fontName="Segoe UI"/>

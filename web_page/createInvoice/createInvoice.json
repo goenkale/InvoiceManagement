@@ -1,8 +1,9 @@
 {
-  "designerVersion" : "1.10.50",
+  "modelVersion" : "2.0",
+  "previousArtifactVersion" : "1.10.50",
   "id" : "createInvoice",
   "name" : "createInvoice",
-  "lastUpdate" : 1585150288223,
+  "lastUpdate" : 1617377381829,
   "rows" : [
     [
       {

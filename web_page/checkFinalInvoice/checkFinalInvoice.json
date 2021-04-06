@@ -1,8 +1,9 @@
 {
-  "designerVersion" : "1.10.50",
+  "modelVersion" : "2.0",
+  "previousArtifactVersion" : "1.10.50",
   "id" : "checkFinalInvoice",
   "name" : "checkFinalInvoice",
-  "lastUpdate" : 1585061020187,
+  "lastUpdate" : 1617377381690,
   "rows" : [
     [
       {

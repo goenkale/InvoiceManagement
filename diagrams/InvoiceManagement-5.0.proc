@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:connectorconfiguration="http://wwww.bonitasoft.org/model/connector/configuration" xmlns:decision="http://www.bonitasoft.org/ns/studio/process/decision" xmlns:definition="http://www.bonitasoft.org/ns/connector/definition/6.1" xmlns:expression="http://www.bonitasoft.org/ns/studio/expression" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:process="http://www.bonitasoft.org/ns/studio/process" xsi:schemaLocation="http://www.bonitasoft.org/ns/studio/process/decision http://www.bonitasoft.org/ns/studio/process#//decision">
-  <process:MainProcess xmi:id="_CcS9cG58EequwMTVpq0wag" name="InvoiceManagement" version="5.0" author="Bonitasoft" bonitaVersion="7.10.5" bonitaModelVersion="7.10.0-001" configId="ACED0005740023496E766F6963654D616E6167656D656E74372E31302E302D303031372E31302E357370">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:connectorconfiguration="http://wwww.bonitasoft.org/model/connector/configuration" xmlns:decision="http://www.bonitasoft.org/ns/studio/process/decision" xmlns:definition="http://www.bonitasoft.org/ns/connector/definition/6.1" xmlns:expression="http://www.bonitasoft.org/ns/studio/expression" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:process="http://www.bonitasoft.org/ns/studio/process" xsi:schemaLocation="http://www.bonitasoft.org/ns/studio/process/decision http://www.bonitasoft.org/ns/studio/process#//decision">
+  <process:MainProcess xmi:id="_CcS9cG58EequwMTVpq0wag" name="InvoiceManagement" version="5.0" author="Bonitasoft" bonitaVersion="7.12.2" bonitaModelVersion="7.12.0-004" configId="ACED0005740023496E766F6963654D616E6167656D656E74372E31302E302D303031372E31302E357370">
     <elements xmi:type="process:Pool" xmi:id="_CcS9cW58EequwMTVpq0wag" name="InvoiceManagement" version="5.0">
       <elements xmi:type="process:Lane" xmi:id="_CcS9cm58EequwMTVpq0wag" name="Employee lane" actor="_CcS-Q258EequwMTVpq0wag">
         <elements xmi:type="process:StartEvent" xmi:id="_CcS9c258EequwMTVpq0wag" name="Create invoice" outgoing="_CcS-N258EequwMTVpq0wag">
@@ -334,31 +334,31 @@
   </process:MainProcess>
   <notation:Diagram xmi:id="_CcS-dm58EequwMTVpq0wag" type="Process" element="_CcS9cG58EequwMTVpq0wag" name="MyDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Node" xmi:id="_CcS-d258EequwMTVpq0wag" type="2007" element="_CcS9cW58EequwMTVpq0wag">
-      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-eG58EequwMTVpq0wag" type="5008"/>
-      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-eW58EequwMTVpq0wag" type="7001">
+      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-eG58EequwMTVpq0wag" type="5008" element="_CcS9cW58EequwMTVpq0wag"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-eW58EequwMTVpq0wag" type="7001" element="_CcS9cW58EequwMTVpq0wag">
         <children xmi:type="notation:Node" xmi:id="_CcS-em58EequwMTVpq0wag" type="3007" element="_CcS9cm58EequwMTVpq0wag">
-          <children xmi:type="notation:DecorationNode" xmi:id="_CcS-e258EequwMTVpq0wag" type="5007"/>
-          <children xmi:type="notation:DecorationNode" xmi:id="_CcS-fG58EequwMTVpq0wag" type="7002">
+          <children xmi:type="notation:DecorationNode" xmi:id="_CcS-e258EequwMTVpq0wag" type="5007" element="_CcS9cm58EequwMTVpq0wag"/>
+          <children xmi:type="notation:DecorationNode" xmi:id="_CcS-fG58EequwMTVpq0wag" type="7002" element="_CcS9cm58EequwMTVpq0wag">
             <children xmi:type="notation:Shape" xmi:id="_CcS-fW58EequwMTVpq0wag" type="3005" element="_CcS9d258EequwMTVpq0wag" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
-              <children xmi:type="notation:DecorationNode" xmi:id="_CcS-fm58EequwMTVpq0wag" type="5005"/>
+              <children xmi:type="notation:DecorationNode" xmi:id="_CcS-fm58EequwMTVpq0wag" type="5005" element="_CcS9d258EequwMTVpq0wag"/>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CcS-f258EequwMTVpq0wag" x="237" y="134"/>
             </children>
             <children xmi:type="notation:Shape" xmi:id="_CcS-gG58EequwMTVpq0wag" type="3002" element="_CcS9c258EequwMTVpq0wag" fontName="Segoe UI">
-              <children xmi:type="notation:DecorationNode" xmi:id="_CcS-gW58EequwMTVpq0wag" type="5024">
+              <children xmi:type="notation:DecorationNode" xmi:id="_CcS-gW58EequwMTVpq0wag" type="5024" element="_CcS9c258EequwMTVpq0wag">
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_CcS-gm58EequwMTVpq0wag" y="5"/>
               </children>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CcS-g258EequwMTVpq0wag" x="137" y="142"/>
             </children>
             <children xmi:type="notation:Shape" xmi:id="_CcS-hG58EequwMTVpq0wag" type="3005" element="_CcS9vW58EequwMTVpq0wag" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
-              <children xmi:type="notation:DecorationNode" xmi:id="_CcS-hW58EequwMTVpq0wag" type="5005"/>
+              <children xmi:type="notation:DecorationNode" xmi:id="_CcS-hW58EequwMTVpq0wag" type="5005" element="_CcS9vW58EequwMTVpq0wag"/>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CcS-hm58EequwMTVpq0wag" x="575" y="132" width="100" height="50"/>
             </children>
             <children xmi:type="notation:Shape" xmi:id="_CcS-h258EequwMTVpq0wag" type="3027" element="_CcS9ym58EequwMTVpq0wag" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
-              <children xmi:type="notation:DecorationNode" xmi:id="_CcS-iG58EequwMTVpq0wag" type="5017"/>
+              <children xmi:type="notation:DecorationNode" xmi:id="_CcS-iG58EequwMTVpq0wag" type="5017" element="_CcS9ym58EequwMTVpq0wag"/>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CcS-iW58EequwMTVpq0wag" x="398" y="132" width="120" height="60"/>
             </children>
             <children xmi:type="notation:Shape" xmi:id="_CcS-im58EequwMTVpq0wag" type="3003" element="_CcS-KG58EequwMTVpq0wag" fontName="Segoe UI">
-              <children xmi:type="notation:DecorationNode" xmi:id="_CcS-i258EequwMTVpq0wag" type="5025">
+              <children xmi:type="notation:DecorationNode" xmi:id="_CcS-i258EequwMTVpq0wag" type="5025" element="_CcS-KG58EequwMTVpq0wag">
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_CcS-jG58EequwMTVpq0wag" y="5"/>
               </children>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CcS-jW58EequwMTVpq0wag" x="778" y="145"/>
@@ -379,28 +379,28 @@
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_CcS-mG58EequwMTVpq0wag"/>
     <edges xmi:type="notation:Connector" xmi:id="_CcS-mW58EequwMTVpq0wag" type="4001" element="_CcS-N258EequwMTVpq0wag" source="_CcS-gG58EequwMTVpq0wag" target="_CcS-fW58EequwMTVpq0wag" roundedBendpointsRadius="10" routing="Rectilinear">
-      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-mm58EequwMTVpq0wag" type="6001">
+      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-mm58EequwMTVpq0wag" type="6001" element="_CcS-N258EequwMTVpq0wag">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_CcS-m258EequwMTVpq0wag" y="-10"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_CcS-nG58EequwMTVpq0wag" fontName="Segoe UI"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_CcS-nW58EequwMTVpq0wag" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_CcS-nm58EequwMTVpq0wag" type="4001" element="_CcS-Om58EequwMTVpq0wag" source="_CcS-fW58EequwMTVpq0wag" target="_CcS-h258EequwMTVpq0wag" roundedBendpointsRadius="10" routing="Rectilinear">
-      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-n258EequwMTVpq0wag" type="6001">
+      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-n258EequwMTVpq0wag" type="6001" element="_CcS-Om58EequwMTVpq0wag">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_CcS-oG58EequwMTVpq0wag" y="-10"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_CcS-oW58EequwMTVpq0wag" fontName="Segoe UI"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_CcS-om58EequwMTVpq0wag" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_CcS-o258EequwMTVpq0wag" type="4001" element="_CcS-PW58EequwMTVpq0wag" source="_CcS-h258EequwMTVpq0wag" target="_CcS-hG58EequwMTVpq0wag" roundedBendpointsRadius="10" routing="Rectilinear">
-      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-pG58EequwMTVpq0wag" type="6001">
+      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-pG58EequwMTVpq0wag" type="6001" element="_CcS-PW58EequwMTVpq0wag">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_CcS-pW58EequwMTVpq0wag" y="-10"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_CcS-pm58EequwMTVpq0wag" fontName="Segoe UI"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_CcS-p258EequwMTVpq0wag" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_CcS-qG58EequwMTVpq0wag" type="4001" element="_CcS-QG58EequwMTVpq0wag" source="_CcS-hG58EequwMTVpq0wag" target="_CcS-im58EequwMTVpq0wag" roundedBendpointsRadius="10" routing="Rectilinear">
-      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-qW58EequwMTVpq0wag" type="6001">
+      <children xmi:type="notation:DecorationNode" xmi:id="_CcS-qW58EequwMTVpq0wag" type="6001" element="_CcS-QG58EequwMTVpq0wag">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_CcS-qm58EequwMTVpq0wag" y="-10"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_CcS-q258EequwMTVpq0wag" fontName="Segoe UI"/>
