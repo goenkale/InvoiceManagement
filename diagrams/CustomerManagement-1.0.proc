@@ -65,7 +65,9 @@
       <configurations xmi:type="configuration:Configuration" xmi:id="_pwwoMHd6EeyzNJsXbeHoJQ" name="Desarrollo" version="7.12.0-004" username="walter.bates" password="bpm">
         <actorMappings xmi:type="actormapping:ActorMappingsType" xmi:id="_pwxPQHd6EeyzNJsXbeHoJQ">
           <actorMapping xmi:type="actormapping:ActorMapping" xmi:id="_pwxPQXd6EeyzNJsXbeHoJQ" name="Employee actor">
-            <groups xmi:type="actormapping:Groups" xmi:id="_pwxPQnd6EeyzNJsXbeHoJQ"/>
+            <groups xmi:type="actormapping:Groups" xmi:id="_pwxPQnd6EeyzNJsXbeHoJQ">
+              <group>/acme</group>
+            </groups>
             <memberships xmi:type="actormapping:Membership" xmi:id="_pwxPQ3d6EeyzNJsXbeHoJQ"/>
             <roles xmi:type="actormapping:Roles" xmi:id="_pwxPRHd6EeyzNJsXbeHoJQ"/>
             <users xmi:type="actormapping:Users" xmi:id="_pwxPRXd6EeyzNJsXbeHoJQ"/>
@@ -146,7 +148,9 @@
       <configurations xmi:type="configuration:Configuration" xmi:id="_orKSEHd6EeyzNJsXbeHoJQ" name="Desarrollo" version="7.12.0-004" username="walter.bates" password="bpm">
         <actorMappings xmi:type="actormapping:ActorMappingsType" xmi:id="_orK5IHd6EeyzNJsXbeHoJQ">
           <actorMapping xmi:type="actormapping:ActorMapping" xmi:id="_orK5IXd6EeyzNJsXbeHoJQ" name="Employee">
-            <groups xmi:type="actormapping:Groups" xmi:id="_orK5Ind6EeyzNJsXbeHoJQ"/>
+            <groups xmi:type="actormapping:Groups" xmi:id="_orK5Ind6EeyzNJsXbeHoJQ">
+              <group>/acme</group>
+            </groups>
             <memberships xmi:type="actormapping:Membership" xmi:id="_orK5I3d6EeyzNJsXbeHoJQ"/>
             <roles xmi:type="actormapping:Roles" xmi:id="_orK5JHd6EeyzNJsXbeHoJQ"/>
             <users xmi:type="actormapping:Users" xmi:id="_orK5JXd6EeyzNJsXbeHoJQ"/>
