@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:actormapping="http://www.bonitasoft.org/ns/actormapping/6.0" xmlns:configuration="http://www.bonitasoft.org/ns/studio/configuration" xmlns:decision="http://www.bonitasoft.org/ns/studio/process/decision" xmlns:expression="http://www.bonitasoft.org/ns/studio/expression" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:process="http://www.bonitasoft.org/ns/studio/process" xsi:schemaLocation="http://www.bonitasoft.org/ns/studio/process/decision http://www.bonitasoft.org/ns/studio/process#//decision">
-  <process:MainProcess xmi:id="_JTjrcGkyEeqX24msL49PEg" name="CustomerManagement" author="Bonitasoft" bonitaVersion="7.12.2" bonitaModelVersion="7.12.0-004" configId="ACED0005740024437573746F6D65724D616E6167656D656E74372E31302E302D303031372E31302E357370">
+  <process:MainProcess xmi:id="_JTjrcGkyEeqX24msL49PEg" name="CustomerManagement" author="Bonitasoft" bonitaVersion="7.12.8" bonitaModelVersion="7.12.0-004" configId="ACED0005740024437573746F6D65724D616E6167656D656E74372E31302E302D303031372E31302E357370">
     <elements xmi:type="process:Pool" xmi:id="_JTjrcWkyEeqX24msL49PEg" name="CustomerManagement">
       <elements xmi:type="process:Lane" xmi:id="_JTjrcmkyEeqX24msL49PEg" name="Employee lane" actor="_JTjri2kyEeqX24msL49PEg">
         <elements xmi:type="process:StartEvent" xmi:id="_JTjrc2kyEeqX24msL49PEg" name="Start1" outgoing="_JTjriGkyEeqX24msL49PEg">
@@ -18,7 +18,7 @@
           <iteratorExpression xmi:type="expression:Expression" xmi:id="_JTjrfmkyEeqX24msL49PEg" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
           <completionCondition xmi:type="expression:Expression" xmi:id="_JTjrf2kyEeqX24msL49PEg" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
           <formMapping xmi:type="process:FormMapping" xmi:id="_JTjrgGkyEeqX24msL49PEg">
-            <targetForm xmi:type="expression:Expression" xmi:id="_3ZtfkGkyEeqX24msL49PEg" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
+            <targetForm xmi:type="expression:Expression" xmi:id="_gMwiYHd6EeyzNJsXbeHoJQ" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
           </formMapping>
           <contract xmi:type="process:Contract" xmi:id="_JTjrgmkyEeqX24msL49PEg"/>
           <expectedDuration xmi:type="expression:Expression" xmi:id="_JTjrg2kyEeqX24msL49PEg" name="" content="" returnType="java.lang.Long" returnTypeFixed="true"/>
@@ -30,7 +30,7 @@
         </elements>
       </elements>
       <formMapping xmi:type="process:FormMapping" xmi:id="_JTjrhGkyEeqX24msL49PEg">
-        <targetForm xmi:type="expression:Expression" xmi:id="_3ZtfkWkyEeqX24msL49PEg" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
+        <targetForm xmi:type="expression:Expression" xmi:id="_gMwiYXd6EeyzNJsXbeHoJQ" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
       </formMapping>
       <overviewFormMapping xmi:type="process:FormMapping" xmi:id="_JTjrhmkyEeqX24msL49PEg">
         <targetForm xmi:type="expression:Expression" xmi:id="_JTjrh2kyEeqX24msL49PEg" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
@@ -61,6 +61,22 @@
         <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_hSAnVJbrEeuve7MZb67s4Q" id="OTHER"/>
         <applicationDependencies xmi:type="configuration:FragmentContainer" xmi:id="_hSAnVZbrEeuve7MZb67s4Q" id="GROOVY_SCRIPT"/>
         <applicationDependencies xmi:type="configuration:FragmentContainer" xmi:id="_hSAnVpbrEeuve7MZb67s4Q" id="OTHER"/>
+      </configurations>
+      <configurations xmi:type="configuration:Configuration" xmi:id="_pwwoMHd6EeyzNJsXbeHoJQ" name="Desarrollo" version="7.12.0-004" username="walter.bates" password="bpm">
+        <actorMappings xmi:type="actormapping:ActorMappingsType" xmi:id="_pwxPQHd6EeyzNJsXbeHoJQ">
+          <actorMapping xmi:type="actormapping:ActorMapping" xmi:id="_pwxPQXd6EeyzNJsXbeHoJQ" name="Employee actor">
+            <groups xmi:type="actormapping:Groups" xmi:id="_pwxPQnd6EeyzNJsXbeHoJQ"/>
+            <memberships xmi:type="actormapping:Membership" xmi:id="_pwxPQ3d6EeyzNJsXbeHoJQ"/>
+            <roles xmi:type="actormapping:Roles" xmi:id="_pwxPRHd6EeyzNJsXbeHoJQ"/>
+            <users xmi:type="actormapping:Users" xmi:id="_pwxPRXd6EeyzNJsXbeHoJQ"/>
+          </actorMapping>
+        </actorMappings>
+        <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_pwwoMXd6EeyzNJsXbeHoJQ" id="ACTOR_FILTER"/>
+        <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_pwwoMnd6EeyzNJsXbeHoJQ" id="CONNECTOR"/>
+        <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_pwwoM3d6EeyzNJsXbeHoJQ" id="GROOVY_SCRIPT"/>
+        <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_pwwoNHd6EeyzNJsXbeHoJQ" id="OTHER"/>
+        <applicationDependencies xmi:type="configuration:FragmentContainer" xmi:id="_pwwoNXd6EeyzNJsXbeHoJQ" id="GROOVY_SCRIPT"/>
+        <applicationDependencies xmi:type="configuration:FragmentContainer" xmi:id="_pwwoNnd6EeyzNJsXbeHoJQ" id="OTHER"/>
       </configurations>
       <contract xmi:type="process:Contract" xmi:id="_JTjrjGkyEeqX24msL49PEg"/>
       <searchIndexes xmi:type="process:SearchIndex" xmi:id="_JTjrjWkyEeqX24msL49PEg">
@@ -99,7 +115,7 @@
         <defaultValue xmi:type="expression:Expression" xmi:id="_tS3ycWkyEeqX24msL49PEg" name="init_customer()" content="def customerList = []&#xD;&#xA;&#xD;&#xA;def cus1 = new com.invoice.model.Customer()&#xD;&#xA;cus1.name = &quot;Víctor García&quot;&#xD;&#xA;cus1.email = &quot;victor@bonitasoft.com&quot;&#xD;&#xA;cus1.company = &quot;Bonitasoft&quot;&#xD;&#xA;cus1.address = &quot;32 rue Gustave Eiffel, 38000 Grenoble&quot;&#xD;&#xA;cus1.phone = &quot;+33 667 548 613&quot;&#xD;&#xA;cus1.billName = &quot;Víctor García&quot;&#xD;&#xA;cus1.billEmail = &quot;victor@bonitasoft.com&quot;&#xD;&#xA;cus1.billAddress = &quot;32 rue Gustave Eiffel, 38000 Grenoble&quot;&#xD;&#xA;cus1.billPhone = &quot;+33 657 445 113&quot;&#xD;&#xA;&#xD;&#xA;customerList.add(cus1)&#xD;&#xA;&#xD;&#xA;def cus2 = new com.invoice.model.Customer()&#xD;&#xA;cus2.name = &quot;Cris Gil&quot;&#xD;&#xA;cus2.email = &quot;cris@uga.com&quot;&#xD;&#xA;cus2.company = &quot;Universidad de Grenoble&quot;&#xD;&#xA;cus2.address = &quot;13 Campus Grenoble, 38000 Grenoble&quot;&#xD;&#xA;cus2.phone = &quot;+33 667 548 613&quot;&#xD;&#xA;cus2.billName = &quot;Cris Gil&quot;&#xD;&#xA;cus2.billEmail = &quot;cris@uga.com&quot;&#xD;&#xA;cus2.billAddress = &quot;13 Campus Grenoble, 38000 Grenoble&quot;&#xD;&#xA;cus2.billPhone = &quot;+33 657 445 113&quot;&#xD;&#xA;&#xD;&#xA;customerList.add(cus2)&#xD;&#xA;&#xD;&#xA;return customerList" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.util.List"/>
       </data>
       <formMapping xmi:type="process:FormMapping" xmi:id="_MPYjcGkyEeqX24msL49PEg">
-        <targetForm xmi:type="expression:Expression" xmi:id="_3bMtUGkyEeqX24msL49PEg" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
+        <targetForm xmi:type="expression:Expression" xmi:id="_gTy-gHd6EeyzNJsXbeHoJQ" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
       </formMapping>
       <overviewFormMapping xmi:type="process:FormMapping" xmi:id="_MPYjcmkyEeqX24msL49PEg">
         <targetForm xmi:type="expression:Expression" xmi:id="_MPYjc2kyEeqX24msL49PEg" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
@@ -126,6 +142,22 @@
         <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_m89X9JbrEeuve7MZb67s4Q" id="OTHER"/>
         <applicationDependencies xmi:type="configuration:FragmentContainer" xmi:id="_m89X9ZbrEeuve7MZb67s4Q" id="GROOVY_SCRIPT"/>
         <applicationDependencies xmi:type="configuration:FragmentContainer" xmi:id="_m89X9pbrEeuve7MZb67s4Q" id="OTHER"/>
+      </configurations>
+      <configurations xmi:type="configuration:Configuration" xmi:id="_orKSEHd6EeyzNJsXbeHoJQ" name="Desarrollo" version="7.12.0-004" username="walter.bates" password="bpm">
+        <actorMappings xmi:type="actormapping:ActorMappingsType" xmi:id="_orK5IHd6EeyzNJsXbeHoJQ">
+          <actorMapping xmi:type="actormapping:ActorMapping" xmi:id="_orK5IXd6EeyzNJsXbeHoJQ" name="Employee">
+            <groups xmi:type="actormapping:Groups" xmi:id="_orK5Ind6EeyzNJsXbeHoJQ"/>
+            <memberships xmi:type="actormapping:Membership" xmi:id="_orK5I3d6EeyzNJsXbeHoJQ"/>
+            <roles xmi:type="actormapping:Roles" xmi:id="_orK5JHd6EeyzNJsXbeHoJQ"/>
+            <users xmi:type="actormapping:Users" xmi:id="_orK5JXd6EeyzNJsXbeHoJQ"/>
+          </actorMapping>
+        </actorMappings>
+        <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_orKSEXd6EeyzNJsXbeHoJQ" id="ACTOR_FILTER"/>
+        <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_orKSEnd6EeyzNJsXbeHoJQ" id="CONNECTOR"/>
+        <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_orKSE3d6EeyzNJsXbeHoJQ" id="GROOVY_SCRIPT"/>
+        <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_orKSFHd6EeyzNJsXbeHoJQ" id="OTHER"/>
+        <applicationDependencies xmi:type="configuration:FragmentContainer" xmi:id="_orKSFXd6EeyzNJsXbeHoJQ" id="GROOVY_SCRIPT"/>
+        <applicationDependencies xmi:type="configuration:FragmentContainer" xmi:id="_orKSFnd6EeyzNJsXbeHoJQ" id="OTHER"/>
       </configurations>
       <contract xmi:type="process:Contract" xmi:id="_MPYjdGkyEeqX24msL49PEg"/>
       <searchIndexes xmi:type="process:SearchIndex" xmi:id="_MPYjYWkyEeqX24msL49PEg">
