@@ -1,0 +1,1402 @@
+= InvoiceManagement
+Generated with Bonita
+v0.0.1, {docdate}
+:toc: left
+:toc-title: Table of contents
+:toclevels: 2
+:bonita-version: 7.13
+:imagesdir: ./documentation/images
+:icons: font
+:sectnums: numbered
+:sectanchors:
+:hardbreaks:
+:experimental:
+
+== Business Data Model
+
+
+////
+Install graphviz to benefit of plantuml diagram generation.
+Visit https://graphviz.org/download/ for more information.
+////
+
+=== Package com.invoice.model
+
+==== Customer
+
+_No description available_
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                    |Type  |Description
+|[[Customer.persistenceId]]persistenceId*|Long  |           
+|[[Customer.name]]name*                  |String|           
+|[[Customer.email]]email*                |String|           
+|[[Customer.company]]company*            |String|           
+|[[Customer.phone]]phone                 |String|           
+|[[Customer.address]]address             |String|           
+|[[Customer.billName]]billName           |String|           
+|[[Customer.billEmail]]billEmail         |String|           
+|[[Customer.billAddress]]billAddress     |String|           
+|[[Customer.billPhone]]billPhone         |String|           
+|===
+
+==== Invoice
+
+_No description available_
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                         |Type                 |Description
+|[[Invoice.persistenceId]]persistenceId*      |Long                 |           
+|[[Invoice.invoiceDate]]invoiceDate           |LocalDate            |           
+|[[Invoice.total]]total                       |Integer              |           
+|[[Invoice.invoiceNumber]]invoiceNumber       |String               |           
+|[[Invoice.status]]status                     |String               |           
+|[[Invoice.tax]]tax                           |Integer              |           
+|[[Invoice.subTotal]]subTotal                 |Integer              |           
+|[[Invoice.taxRate]]taxRate                   |Integer              |           
+|[[Invoice.customer]]&#x25c7; customer        |<<Customer>>         |           
+|[[Invoice.invoiceLines]]&#x25c6; invoiceLines|List<<<InvoiceLine>>>|           
+|===
+
+==== InvoiceLine
+
+_No description available_
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                       |Type   |Description
+|[[InvoiceLine.persistenceId]]persistenceId*|Long   |           
+|[[InvoiceLine.description]]description     |String |           
+|[[InvoiceLine.quantity]]quantity           |Integer|           
+|[[InvoiceLine.amount]]amount               |Integer|           
+|[[InvoiceLine.rate]]rate                   |Integer|           
+|===
+
+== Processes
+
+=== image:icons/Pool.png[title="Process"] [[_3f9db1d6-f1e4-309d-9c7b-37220a79daef]]CustomerManagement (1.0)
+
+_No description available_
+
+image::processes/CustomerManagement-1.0.png[]
+
+==== icon:users[] Actors
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                                               |Description                                                 
+|[[_cf23e898-ba69-39b5-8b43-2eb409b948f6]]Employee actor icon:play-circle[title="Process initiator"]|This is an example of actor that is mapped to any ACME users
+|===
+
+==== Instantiation form
+
+[CAUTION]
+====
+Invalid form mapping. No form specified.
+====
+
+==== image:icons/Lane.png[title="Lane"] Employee lane (<<_cf23e898-ba69-39b5-8b43-2eb409b948f6,icon:user[title="Actor"] Employee actor>>)
+
+_No description available_
+
+==== [[_0e8583ee-31b7-3dd8-8cfb-a033418caf75]]image:icons/StartEvent.png[title="StartEvent"] Start1
+
+_No description available_
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_19c11640-0433-3ee0-9418-e4cc485de189,Step1>>*
+
+==== [[_19c11640-0433-3ee0-9418-e4cc485de189]]image:icons/Task.png[title="Task"] Step1
+
+_No description available_
+
+*Previous flow element(s)*: <<_0e8583ee-31b7-3dd8-8cfb-a033418caf75,Start1>>
+
+[CAUTION]
+====
+Invalid form mapping. No form specified.
+====
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_f8f6fc2d-0280-329b-a12e-89145b507a38,End1>>*
+
+==== [[_f8f6fc2d-0280-329b-a12e-89145b507a38]]image:icons/EndEvent.png[title="EndEvent"] End1
+
+_No description available_
+
+*Previous flow element(s)*: <<_19c11640-0433-3ee0-9418-e4cc485de189,Step1>>
+
+=== image:icons/Pool.png[title="Process"] [[_b6ce1395-a098-3d7b-9eca-923a213136b3]]InitCustomer (1.0)
+
+_No description available_
+
+image::processes/InitCustomer-1.0.png[]
+
+==== icon:users[] Actors
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                                         |Description
+|[[_45df7404-f462-3a85-a997-ac6e0261a174]]Employee icon:play-circle[title="Process initiator"]|           
+|===
+
+==== Instantiation form
+
+[CAUTION]
+====
+Invalid form mapping. No form specified.
+====
+
+==== [[_9b87ad93-0d3b-35f7-9051-5426250e0fdf]]image:icons/StartEvent.png[title="StartEvent"] Init customer data
+
+_No description available_
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_7c4623aa-9671-3adc-8b1a-c5f6bee8f598,End initialitation>>*
+
+==== [[_7c4623aa-9671-3adc-8b1a-c5f6bee8f598]]image:icons/EndEvent.png[title="EndEvent"] End initialitation
+
+_No description available_
+
+*Previous flow element(s)*: <<_9b87ad93-0d3b-35f7-9051-5426250e0fdf,Init customer data>>
+
+=== image:icons/Pool.png[title="Process"] [[_c294d9bc-eadf-34a5-8b73-36b72248ad8c]]InvoiceManagement (1.0)
+
+_No description available_
+
+image::processes/InvoiceManagement-1.0.png[]
+
+==== icon:users[] Actors
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                                               |Description                                                 
+|[[_22a53caa-df6a-3b86-b43f-74daba799467]]Employee actor icon:play-circle[title="Process initiator"]|This is an example of actor that is mapped to any ACME users
+|===
+
+==== Instantiation form
+
+[CAUTION]
+====
+Invalid form mapping. No form specified.
+====
+
+==== image:icons/Lane.png[title="Lane"] Employee lane (<<_22a53caa-df6a-3b86-b43f-74daba799467,icon:user[title="Actor"] Employee actor>>)
+
+_No description available_
+
+==== [[_b3305bc2-6f3f-3a50-b01b-71ea9d185341]]image:icons/StartEvent.png[title="StartEvent"] Create invoice
+
+_No description available_
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_6720a475-580d-3bdd-981f-60dac7dc7e66,Review invoice>>*
+
+==== [[_6720a475-580d-3bdd-981f-60dac7dc7e66]]image:icons/Task.png[title="Task"] Review invoice
+
+_No description available_
+
+*Previous flow element(s)*: <<_b3305bc2-6f3f-3a50-b01b-71ea9d185341,Create invoice>>
+
+[CAUTION]
+====
+Invalid form mapping. No form specified.
+====
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_db0aa0c5-5bff-386f-8a27-61331a208209,Generate invoice file>>*
+
+==== [[_db0aa0c5-5bff-386f-8a27-61331a208209]]image:icons/ServiceTask.png[title="ServiceTask"] Generate invoice file
+
+_No description available_
+
+*Previous flow element(s)*: <<_6720a475-580d-3bdd-981f-60dac7dc7e66,Review invoice>>
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_51880b5d-5a19-3bc4-92a0-ea68ab551054,Check invoice file>>*
+
+==== [[_51880b5d-5a19-3bc4-92a0-ea68ab551054]]image:icons/Task.png[title="Task"] Check invoice file
+
+_No description available_
+
+*Previous flow element(s)*: <<_db0aa0c5-5bff-386f-8a27-61331a208209,Generate invoice file>>
+
+[CAUTION]
+====
+Invalid form mapping. No form specified.
+====
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_8c600939-861a-33d2-8c9b-719564100a88,End invoice>>*
+
+==== [[_8c600939-861a-33d2-8c9b-719564100a88]]image:icons/EndEvent.png[title="EndEvent"] End invoice
+
+_No description available_
+
+*Previous flow element(s)*: <<_51880b5d-5a19-3bc4-92a0-ea68ab551054,Check invoice file>>
+
+=== image:icons/Pool.png[title="Process"] [[_ff811302-c198-3d50-9c7f-318fd52ec10e]]InvoiceManagement (2.0)
+
+_No description available_
+
+image::processes/InvoiceManagement-2.0.png[]
+
+==== icon:users[] Actors
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                                               |Description                                                 
+|[[_e7001e2e-c661-307f-88ed-fef71bb2a469]]Employee actor icon:play-circle[title="Process initiator"]|This is an example of actor that is mapped to any ACME users
+|===
+
+==== Instantiation form
+
+[CAUTION]
+====
+Invalid form mapping. No form specified.
+====
+
+==== image:icons/Lane.png[title="Lane"] Employee lane (<<_e7001e2e-c661-307f-88ed-fef71bb2a469,icon:user[title="Actor"] Employee actor>>)
+
+_No description available_
+
+==== [[_8fd14049-6ed7-3c70-99fb-0f9b0ea0d62e]]image:icons/StartEvent.png[title="StartEvent"] Create invoice
+
+_No description available_
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_9f0329e8-afda-3b08-9a43-67c73315ab2c,Review invoice>>*
+
+==== [[_9f0329e8-afda-3b08-9a43-67c73315ab2c]]image:icons/Task.png[title="Task"] Review invoice
+
+_No description available_
+
+*Previous flow element(s)*: <<_8fd14049-6ed7-3c70-99fb-0f9b0ea0d62e,Create invoice>>
+
+[CAUTION]
+====
+Invalid form mapping. No form specified.
+====
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_ad7b2a83-5027-3780-96d6-bcf971570c75,Generate invoice file>>*
+
+==== [[_ad7b2a83-5027-3780-96d6-bcf971570c75]]image:icons/ServiceTask.png[title="ServiceTask"] Generate invoice file
+
+_No description available_
+
+*Previous flow element(s)*: <<_9f0329e8-afda-3b08-9a43-67c73315ab2c,Review invoice>>
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_8cb1a7f9-247d-34f1-bb40-2381b9dea426,Check invoice file>>*
+
+==== [[_8cb1a7f9-247d-34f1-bb40-2381b9dea426]]image:icons/Task.png[title="Task"] Check invoice file
+
+_No description available_
+
+*Previous flow element(s)*: <<_ad7b2a83-5027-3780-96d6-bcf971570c75,Generate invoice file>>
+
+[CAUTION]
+====
+Invalid form mapping. No form specified.
+====
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_4bbcffcc-cb50-335f-bd5d-57b4be9e7f5f,End invoice>>*
+
+==== [[_4bbcffcc-cb50-335f-bd5d-57b4be9e7f5f]]image:icons/EndEvent.png[title="EndEvent"] End invoice
+
+_No description available_
+
+*Previous flow element(s)*: <<_8cb1a7f9-247d-34f1-bb40-2381b9dea426,Check invoice file>>
+
+=== image:icons/Pool.png[title="Process"] [[_2c53fd96-1eb9-3e25-80d4-b3c87e91b474]]InvoiceManagement (3.0)
+
+_No description available_
+
+image::processes/InvoiceManagement-3.0.png[]
+
+==== icon:users[] Actors
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                                               |Description                                                 
+|[[_f67b36ae-95b1-397f-b33e-ff8985751c3b]]Employee actor icon:play-circle[title="Process initiator"]|This is an example of actor that is mapped to any ACME users
+|===
+
+==== icon:file[] Documents
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                               |Description
+|[[_7ac3f81a-906c-37ce-892b-f33f0151e5d8]]invoiceDoc|           
+|===
+
+==== Instantiation form
+
+[CAUTION]
+====
+Invalid form mapping. No form specified.
+====
+
+==== icon:list-alt[] Contract inputs
+
+[verse]
+{
+    invoiceInput ([teal]_InvoiceInput_)
+}
+
+[verse]
+[teal]#InvoiceInput# {
+    invoiceDate ([olive]_Localdate_),
+    total ([olive]_Integer_),
+    customer ([teal]_Customer_),
+    invoiceLines ([teal]_InvoiceLines_, _multiple_)
+}
+
+[verse]
+[teal]#Customer# {
+    persistenceId_string ([olive]_Text_)
+}
+
+[verse]
+[teal]#InvoiceLines# {
+    description ([olive]_Text_),
+    quantity ([olive]_Integer_),
+    amount ([olive]_Integer_)
+}
+
+==== icon:check-circle[] Contract constraints
+
+mandatory_invoiceInput_invoiceDate:: _No description available_
++
+.Expression
+[source,groovy]
+----
+invoiceInput?.invoiceDate != null
+----
++
+.Technical error message
+----
+invoiceDate is mandatory for Invoice
+----
+mandatory_invoiceInput_total:: _No description available_
++
+.Expression
+[source,groovy]
+----
+invoiceInput?.total != null
+----
++
+.Technical error message
+----
+total is mandatory for Invoice
+----
+
+==== image:icons/Lane.png[title="Lane"] Employee lane (<<_f67b36ae-95b1-397f-b33e-ff8985751c3b,icon:user[title="Actor"] Employee actor>>)
+
+_No description available_
+
+==== [[_8e202f44-d298-3b10-b1ea-8c929bc75ef4]]image:icons/StartEvent.png[title="StartEvent"] Create invoice
+
+_No description available_
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_31ef7fcb-8a11-3d11-bb0d-56ee3e2b12de,Review invoice>>*
+
+==== [[_31ef7fcb-8a11-3d11-bb0d-56ee3e2b12de]]image:icons/Task.png[title="Task"] Review invoice
+
+_No description available_
+
+*Previous flow element(s)*: <<_8e202f44-d298-3b10-b1ea-8c929bc75ef4,Create invoice>>
+
+[CAUTION]
+====
+Invalid form mapping. No form specified.
+====
+
+===== icon:list-alt[] Contract inputs
+
+[verse]
+{
+    invoiceInput ([teal]_InvoiceInput_)
+}
+
+[verse]
+[teal]#InvoiceInput# {
+    invoiceDate ([olive]_Localdate_),
+    total ([olive]_Integer_),
+    customer ([teal]_Customer_),
+    invoiceLines ([teal]_InvoiceLines_, _multiple_)
+}
+
+[verse]
+[teal]#Customer# {
+    persistenceId_string ([olive]_Text_)
+}
+
+[verse]
+[teal]#InvoiceLines# {
+    persistenceId_string ([olive]_Text_),
+    description ([olive]_Text_),
+    quantity ([olive]_Integer_),
+    amount ([olive]_Integer_)
+}
+
+===== icon:check-circle[] Contract constraints
+
+aggregation_invoiceInput_customer:: _No description available_
++
+.Expression
+[source,groovy]
+----
+!invoiceInput?.customer || invoiceInput?.customer?.persistenceId_string
+----
++
+.Technical error message
+----
+Customer must reference an existing instance with a persistenceId for Invoice
+----
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_4a390959-af7a-3ca7-b1e9-a5a067dc8372,Generate invoice file>>*
+
+==== [[_4a390959-af7a-3ca7-b1e9-a5a067dc8372]]image:icons/ServiceTask.png[title="ServiceTask"] Generate invoice file
+
+_No description available_
+
+*Previous flow element(s)*: <<_31ef7fcb-8a11-3d11-bb0d-56ee3e2b12de,Review invoice>>
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_e5e8912d-b19d-3d5c-8840-8ed9ebb6c533,Check invoice file>>*
+
+==== [[_e5e8912d-b19d-3d5c-8840-8ed9ebb6c533]]image:icons/Task.png[title="Task"] Check invoice file
+
+_No description available_
+
+*Previous flow element(s)*: <<_4a390959-af7a-3ca7-b1e9-a5a067dc8372,Generate invoice file>>
+
+[CAUTION]
+====
+Invalid form mapping. No form specified.
+====
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_7c94e4ce-bc65-36a4-aeac-1973f06ec3d1,End invoice>>*
+
+==== [[_7c94e4ce-bc65-36a4-aeac-1973f06ec3d1]]image:icons/EndEvent.png[title="EndEvent"] End invoice
+
+_No description available_
+
+*Previous flow element(s)*: <<_e5e8912d-b19d-3d5c-8840-8ed9ebb6c533,Check invoice file>>
+
+=== image:icons/Pool.png[title="Process"] [[_d3c78e3d-7f65-30d1-88d1-d8afcbebb726]]InvoiceManagement (4.0)
+
+_No description available_
+
+image::processes/InvoiceManagement-4.0.png[]
+
+==== icon:users[] Actors
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                                               |Description                                                 
+|[[_94aa0a05-0ff0-3691-84c7-ceada0c0d728]]Employee actor icon:play-circle[title="Process initiator"]|This is an example of actor that is mapped to any ACME users
+|===
+
+==== icon:file[] Documents
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                    |Description
+|[[_22c1525a-2f15-3619-8466-ab21919d8b84]]invoiceDoc     |           
+|[[_c7fa7e18-cff4-336c-a40d-a9240877e2c1]]invoiceTemplate|           
+|[[_ee0e6cb1-11a3-31b4-8d19-5483bb6b1ab8]]finalInvoice   |           
+|===
+
+==== Instantiation form
+
+===== [[_302e822b-a7df-329d-b65b-c8690e4e9f8e]]image:icons/page.png[] createInvoice
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type      |Label                                                         |Description
+|Title     |                                                              |           
+|DatePicker|Invoice Date                                                  |           
+|Input     |Tax rate                                                      |           
+|Select    |Customer                                                      |           
+|Title     |                                                              |           
+|Title     |                                                              |           
+|Title     |                                                              |           
+|Title     |                                                              |           
+|Title     |                                                              |           
+|Button    |<span class="glyphicon glyphicon-remove"></span>              |           
+|Input     |Description                                                   |           
+|Input     |Rate                                                          |           
+|Input     |Quantity                                                      |           
+|Text      |Amount                                                        |           
+|Button    |<span class="glyphicon glyphicon-plus"></span> Add InvoiceLine|           
+|Text      |Subtotal                                                      |           
+|Text      |Tax ({{formInput.invoiceInput.taxRate}}%)                     |           
+|Text      |Total                                                         |           
+|Button    |Submit                                                        |           
+|Text      |                                                              |           
+|Text      |Default label                                                 |           
+|===
+
+==== icon:list-alt[] Contract inputs
+
+[verse]
+{
+    invoiceInput ([teal]_InvoiceInput_)
+}
+
+[verse]
+[teal]#InvoiceInput# {
+    invoiceDate ([olive]_Localdate_),
+    total ([olive]_Integer_),
+    customer ([teal]_Customer_),
+    invoiceLines ([teal]_InvoiceLines_, _multiple_)
+}
+
+[verse]
+[teal]#Customer# {
+    persistenceId_string ([olive]_Text_)
+}
+
+[verse]
+[teal]#InvoiceLines# {
+    description ([olive]_Text_),
+    quantity ([olive]_Integer_),
+    amount ([olive]_Integer_),
+    rate ([olive]_Integer_)
+}
+
+==== icon:check-circle[] Contract constraints
+
+mandatory_invoiceInput_invoiceDate:: _No description available_
++
+.Expression
+[source,groovy]
+----
+invoiceInput?.invoiceDate != null
+----
++
+.Technical error message
+----
+invoiceDate is mandatory for Invoice
+----
+mandatory_invoiceInput_total:: _No description available_
++
+.Expression
+[source,groovy]
+----
+invoiceInput?.total != null
+----
++
+.Technical error message
+----
+total is mandatory for Invoice
+----
+
+==== image:icons/Lane.png[title="Lane"] Employee lane (<<_94aa0a05-0ff0-3691-84c7-ceada0c0d728,icon:user[title="Actor"] Employee actor>>)
+
+_No description available_
+
+==== [[_3373ed90-f325-3540-9108-383e29e54ee4]]image:icons/StartEvent.png[title="StartEvent"] Create invoice
+
+_No description available_
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_df89d80f-6fd8-368c-97f2-85593c127c75,Review invoice>>*
+
+==== [[_df89d80f-6fd8-368c-97f2-85593c127c75]]image:icons/Task.png[title="Task"] Review invoice
+
+_No description available_
+
+*Previous flow element(s)*: <<_3373ed90-f325-3540-9108-383e29e54ee4,Create invoice>>
+
+===== [[_a4f5c2bb-abec-30b7-ba73-c991fed63692]]image:icons/page.png[] reviewInvoice
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type      |Label                                                         |Description
+|Title     |                                                              |           
+|Text      |                                                              |           
+|Title     |                                                              |           
+|Text      |Invoice Number                                                |           
+|Text      |Status                                                        |           
+|DatePicker|Invoice Date                                                  |           
+|Input     |Tax rate                                                      |           
+|Title     |                                                              |           
+|Select    |Customer                                                      |           
+|Text      |Company                                                       |           
+|Text      |Name                                                          |           
+|Text      |Bill Name                                                     |           
+|Text      |Email                                                         |           
+|Text      |Bill Email                                                    |           
+|Text      |Address                                                       |           
+|Text      |Bill Address                                                  |           
+|Text      |Phone                                                         |           
+|Text      |Bill Phone                                                    |           
+|Title     |                                                              |           
+|Button    |<span class="glyphicon glyphicon-remove"></span>              |           
+|Input     |Description                                                   |           
+|Input     |Rate                                                          |           
+|Input     |Quantity                                                      |           
+|Text      |Amount                                                        |           
+|Button    |<span class="glyphicon glyphicon-plus"></span> Add InvoiceLine|           
+|Input     |Subtotal                                                      |           
+|Input     |Tax ({{tax}}%)                                                |           
+|Input     |Total                                                         |           
+|Button    |Submit                                                        |           
+|Text      |                                                              |           
+|===
+
+===== icon:list-alt[] Contract inputs
+
+[verse]
+{
+    invoiceInput ([teal]_InvoiceInput_)
+}
+
+[verse]
+[teal]#InvoiceInput# {
+    invoiceDate ([olive]_Localdate_),
+    total ([olive]_Integer_),
+    customer ([teal]_Customer_),
+    invoiceLines ([teal]_InvoiceLines_, _multiple_)
+}
+
+[verse]
+[teal]#Customer# {
+    persistenceId_string ([olive]_Text_)
+}
+
+[verse]
+[teal]#InvoiceLines# {
+    persistenceId_string ([olive]_Text_),
+    description ([olive]_Text_),
+    quantity ([olive]_Integer_),
+    amount ([olive]_Integer_)
+}
+
+===== icon:check-circle[] Contract constraints
+
+aggregation_invoiceInput_customer:: _No description available_
++
+.Expression
+[source,groovy]
+----
+!invoiceInput?.customer || invoiceInput?.customer?.persistenceId_string
+----
++
+.Technical error message
+----
+Customer must reference an existing instance with a persistenceId for Invoice
+----
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_b696c9a5-d234-32c4-b9e7-bacc91059d4f,Generate invoice file>>*
+
+==== [[_b696c9a5-d234-32c4-b9e7-bacc91059d4f]]image:icons/ServiceTask.png[title="ServiceTask"] Generate invoice file
+
+_No description available_
+
+*Previous flow element(s)*: <<_df89d80f-6fd8-368c-97f2-85593c127c75,Review invoice>>
+
+===== icon:plug[] Connectors out
+
+*Insert data in a .docx/.odt template: generateInvoice*
+*Generate pdf from an office document: generateInvoicePDF*
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_1f150547-b298-3eb5-8fe9-316a867f44c0,Check invoice file>>*
+
+==== [[_1f150547-b298-3eb5-8fe9-316a867f44c0]]image:icons/Task.png[title="Task"] Check invoice file
+
+_No description available_
+
+*Previous flow element(s)*: <<_b696c9a5-d234-32c4-b9e7-bacc91059d4f,Generate invoice file>>
+
+===== [[_e5a1daa0-ccb8-3daa-bd71-5a0d6445af92]]image:icons/page.png[] checkFinalInvoice
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type      |Label |Description
+|Title     |      |           
+|Text      |      |           
+|FileViewer|      |           
+|Button    |Submit|           
+|Text      |      |           
+|===
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_628d22dd-5700-37b7-aece-58d5993ef2f0,End invoice>>*
+
+==== [[_628d22dd-5700-37b7-aece-58d5993ef2f0]]image:icons/EndEvent.png[title="EndEvent"] End invoice
+
+_No description available_
+
+*Previous flow element(s)*: <<_1f150547-b298-3eb5-8fe9-316a867f44c0,Check invoice file>>
+
+=== image:icons/Pool.png[title="Process"] [[_06d46a3a-6d91-32dc-85c7-ba1fc589fff7]]InvoiceManagement (5.0)
+
+_No description available_
+
+image::processes/InvoiceManagement-5.0.png[]
+
+==== icon:users[] Actors
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                                               |Description                                                 
+|[[_7fd8c6b7-dd3a-32ae-959b-a5d0d7ebada4]]Employee actor icon:play-circle[title="Process initiator"]|This is an example of actor that is mapped to any ACME users
+|===
+
+==== icon:file[] Documents
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                    |Description
+|[[_49d18adf-c287-3d68-b475-ac8268340d66]]invoiceDoc     |           
+|[[_f9c9b42a-d63e-3c15-bb33-ff6f1d08c7de]]invoiceTemplate|           
+|[[_ab7e6fb6-3615-3e44-a5c8-4f00dd2dbe4b]]finalInvoice   |           
+|===
+
+==== Instantiation form
+
+===== [[_302e822b-a7df-329d-b65b-c8690e4e9f8e]]image:icons/page.png[] createInvoice
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type      |Label                                                         |Description
+|Title     |                                                              |           
+|DatePicker|Invoice Date                                                  |           
+|Input     |Tax rate                                                      |           
+|Select    |Customer                                                      |           
+|Title     |                                                              |           
+|Title     |                                                              |           
+|Title     |                                                              |           
+|Title     |                                                              |           
+|Title     |                                                              |           
+|Button    |<span class="glyphicon glyphicon-remove"></span>              |           
+|Input     |Description                                                   |           
+|Input     |Rate                                                          |           
+|Input     |Quantity                                                      |           
+|Text      |Amount                                                        |           
+|Button    |<span class="glyphicon glyphicon-plus"></span> Add InvoiceLine|           
+|Text      |Subtotal                                                      |           
+|Text      |Tax ({{formInput.invoiceInput.taxRate}}%)                     |           
+|Text      |Total                                                         |           
+|Button    |Submit                                                        |           
+|Text      |                                                              |           
+|Text      |Default label                                                 |           
+|===
+
+==== icon:list-alt[] Contract inputs
+
+[verse]
+{
+    invoiceInput ([teal]_InvoiceInput_)
+}
+
+[verse]
+[teal]#InvoiceInput# {
+    invoiceDate ([olive]_Localdate_),
+    total ([olive]_Integer_),
+    customer ([teal]_Customer_),
+    invoiceLines ([teal]_InvoiceLines_, _multiple_)
+}
+
+[verse]
+[teal]#Customer# {
+    persistenceId_string ([olive]_Text_)
+}
+
+[verse]
+[teal]#InvoiceLines# {
+    description ([olive]_Text_),
+    quantity ([olive]_Integer_),
+    amount ([olive]_Integer_),
+    rate ([olive]_Integer_)
+}
+
+==== icon:check-circle[] Contract constraints
+
+mandatory_invoiceInput_invoiceDate:: _No description available_
++
+.Expression
+[source,groovy]
+----
+invoiceInput?.invoiceDate != null
+----
++
+.Technical error message
+----
+invoiceDate is mandatory for Invoice
+----
+mandatory_invoiceInput_total:: _No description available_
++
+.Expression
+[source,groovy]
+----
+invoiceInput?.total != null
+----
++
+.Technical error message
+----
+total is mandatory for Invoice
+----
+
+==== image:icons/Lane.png[title="Lane"] Employee lane (<<_7fd8c6b7-dd3a-32ae-959b-a5d0d7ebada4,icon:user[title="Actor"] Employee actor>>)
+
+_No description available_
+
+==== [[_c98ae852-6636-32e7-ad4b-921142a41252]]image:icons/StartEvent.png[title="StartEvent"] Create invoice
+
+_No description available_
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_03b93084-0ce0-3b46-b28f-0e4a214f12ad,Review invoice>>*
+
+==== [[_03b93084-0ce0-3b46-b28f-0e4a214f12ad]]image:icons/Task.png[title="Task"] Review invoice
+
+_No description available_
+
+*Previous flow element(s)*: <<_c98ae852-6636-32e7-ad4b-921142a41252,Create invoice>>
+
+===== [[_a4f5c2bb-abec-30b7-ba73-c991fed63692]]image:icons/page.png[] reviewInvoice
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type      |Label                                                         |Description
+|Title     |                                                              |           
+|Text      |                                                              |           
+|Title     |                                                              |           
+|Text      |Invoice Number                                                |           
+|Text      |Status                                                        |           
+|DatePicker|Invoice Date                                                  |           
+|Input     |Tax rate                                                      |           
+|Title     |                                                              |           
+|Select    |Customer                                                      |           
+|Text      |Company                                                       |           
+|Text      |Name                                                          |           
+|Text      |Bill Name                                                     |           
+|Text      |Email                                                         |           
+|Text      |Bill Email                                                    |           
+|Text      |Address                                                       |           
+|Text      |Bill Address                                                  |           
+|Text      |Phone                                                         |           
+|Text      |Bill Phone                                                    |           
+|Title     |                                                              |           
+|Button    |<span class="glyphicon glyphicon-remove"></span>              |           
+|Input     |Description                                                   |           
+|Input     |Rate                                                          |           
+|Input     |Quantity                                                      |           
+|Text      |Amount                                                        |           
+|Button    |<span class="glyphicon glyphicon-plus"></span> Add InvoiceLine|           
+|Input     |Subtotal                                                      |           
+|Input     |Tax ({{tax}}%)                                                |           
+|Input     |Total                                                         |           
+|Button    |Submit                                                        |           
+|Text      |                                                              |           
+|===
+
+===== icon:list-alt[] Contract inputs
+
+[verse]
+{
+    invoiceInput ([teal]_InvoiceInput_)
+}
+
+[verse]
+[teal]#InvoiceInput# {
+    invoiceDate ([olive]_Localdate_),
+    total ([olive]_Integer_),
+    customer ([teal]_Customer_),
+    invoiceLines ([teal]_InvoiceLines_, _multiple_)
+}
+
+[verse]
+[teal]#Customer# {
+    persistenceId_string ([olive]_Text_)
+}
+
+[verse]
+[teal]#InvoiceLines# {
+    persistenceId_string ([olive]_Text_),
+    description ([olive]_Text_),
+    quantity ([olive]_Integer_),
+    amount ([olive]_Integer_)
+}
+
+===== icon:check-circle[] Contract constraints
+
+aggregation_invoiceInput_customer:: _No description available_
++
+.Expression
+[source,groovy]
+----
+!invoiceInput?.customer || invoiceInput?.customer?.persistenceId_string
+----
++
+.Technical error message
+----
+Customer must reference an existing instance with a persistenceId for Invoice
+----
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_54df29a1-c795-3ac5-b2c7-5f646208692a,Generate invoice file>>*
+
+==== [[_54df29a1-c795-3ac5-b2c7-5f646208692a]]image:icons/ServiceTask.png[title="ServiceTask"] Generate invoice file
+
+_No description available_
+
+*Previous flow element(s)*: <<_03b93084-0ce0-3b46-b28f-0e4a214f12ad,Review invoice>>
+
+===== icon:plug[] Connectors out
+
+*Insert data in a .docx/.odt template: generateInvoice*
+*Generate pdf from an office document: generateInvoicePDF*
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_066a0cec-051c-3a31-9f81-3a99015f3e93,Check invoice file>>*
+
+==== [[_066a0cec-051c-3a31-9f81-3a99015f3e93]]image:icons/Task.png[title="Task"] Check invoice file
+
+_No description available_
+
+*Previous flow element(s)*: <<_54df29a1-c795-3ac5-b2c7-5f646208692a,Generate invoice file>>
+
+===== [[_e5a1daa0-ccb8-3daa-bd71-5a0d6445af92]]image:icons/page.png[] checkFinalInvoice
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type      |Label |Description
+|Title     |      |           
+|Text      |      |           
+|FileViewer|      |           
+|Button    |Submit|           
+|Text      |      |           
+|===
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_877ac22d-7e2f-3ac6-88a8-75d19f7afab2,End invoice>>*
+
+==== [[_877ac22d-7e2f-3ac6-88a8-75d19f7afab2]]image:icons/EndEvent.png[title="EndEvent"] End invoice
+
+_No description available_
+
+*Previous flow element(s)*: <<_066a0cec-051c-3a31-9f81-3a99015f3e93,Check invoice file>>
+
+=== image:icons/Pool.png[title="Process"] [[_c6ebaf98-f011-3c4b-8b93-d56d2d346fbe]]InvoiceManagement (6.0)
+
+_No description available_
+
+image::processes/InvoiceManagement-6.0.png[]
+
+==== icon:users[] Actors
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                                               |Description                                                 
+|[[_c4928b27-6c39-32be-b2aa-23ac20016866]]Employee actor icon:play-circle[title="Process initiator"]|This is an example of actor that is mapped to any ACME users
+|===
+
+==== icon:file[] Documents
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                    |Description
+|[[_957f85ad-76bd-3995-9840-2f9d704d21bb]]invoiceDoc     |           
+|[[_15b8d432-aa3b-3cc8-8405-0e9f441e9f4a]]invoiceTemplate|           
+|[[_4417abef-2823-3ac8-b023-4aeac4335123]]finalInvoice   |           
+|===
+
+==== Instantiation form
+
+===== [[_302e822b-a7df-329d-b65b-c8690e4e9f8e]]image:icons/page.png[] createInvoice
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type      |Label                                                         |Description
+|Title     |                                                              |           
+|DatePicker|Invoice Date                                                  |           
+|Input     |Tax rate                                                      |           
+|Select    |Customer                                                      |           
+|Title     |                                                              |           
+|Title     |                                                              |           
+|Title     |                                                              |           
+|Title     |                                                              |           
+|Title     |                                                              |           
+|Button    |<span class="glyphicon glyphicon-remove"></span>              |           
+|Input     |Description                                                   |           
+|Input     |Rate                                                          |           
+|Input     |Quantity                                                      |           
+|Text      |Amount                                                        |           
+|Button    |<span class="glyphicon glyphicon-plus"></span> Add InvoiceLine|           
+|Text      |Subtotal                                                      |           
+|Text      |Tax ({{formInput.invoiceInput.taxRate}}%)                     |           
+|Text      |Total                                                         |           
+|Button    |Submit                                                        |           
+|Text      |                                                              |           
+|Text      |Default label                                                 |           
+|===
+
+==== icon:list-alt[] Contract inputs
+
+[verse]
+{
+    invoiceInput ([teal]_InvoiceInput_)
+}
+
+[verse]
+[teal]#InvoiceInput# {
+    invoiceDate ([olive]_Localdate_),
+    total ([olive]_Integer_),
+    customer ([teal]_Customer_),
+    invoiceLines ([teal]_InvoiceLines_, _multiple_),
+    tax ([olive]_Integer_),
+    subTotal ([olive]_Integer_),
+    taxRate ([olive]_Integer_)
+}
+
+[verse]
+[teal]#Customer# {
+    persistenceId_string ([olive]_Text_)
+}
+
+[verse]
+[teal]#InvoiceLines# {
+    description ([olive]_Text_),
+    quantity ([olive]_Integer_),
+    amount ([olive]_Integer_),
+    rate ([olive]_Integer_)
+}
+
+==== icon:check-circle[] Contract constraints
+
+mandatory_invoiceInput_invoiceDate:: _No description available_
++
+.Expression
+[source,groovy]
+----
+invoiceInput?.invoiceDate != null
+----
++
+.Technical error message
+----
+invoiceDate is mandatory for Invoice
+----
+mandatory_invoiceInput_total:: _No description available_
++
+.Expression
+[source,groovy]
+----
+invoiceInput?.total != null
+----
++
+.Technical error message
+----
+total is mandatory for Invoice
+----
+
+==== image:icons/Lane.png[title="Lane"] Employee lane (<<_c4928b27-6c39-32be-b2aa-23ac20016866,icon:user[title="Actor"] Employee actor>>)
+
+_No description available_
+
+==== [[_96258967-4a56-3ab5-84b1-ed07926af007]]image:icons/StartEvent.png[title="StartEvent"] Create invoice
+
+_No description available_
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_a3d33cdf-dd07-3b15-8e64-015ed22af8c1,Review invoice>>*
+
+==== [[_a3d33cdf-dd07-3b15-8e64-015ed22af8c1]]image:icons/Task.png[title="Task"] Review invoice
+
+_No description available_
+
+*Previous flow element(s)*: <<_96258967-4a56-3ab5-84b1-ed07926af007,Create invoice>>
+
+===== [[_a4f5c2bb-abec-30b7-ba73-c991fed63692]]image:icons/page.png[] reviewInvoice
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type      |Label                                                         |Description
+|Title     |                                                              |           
+|Text      |                                                              |           
+|Title     |                                                              |           
+|Text      |Invoice Number                                                |           
+|Text      |Status                                                        |           
+|DatePicker|Invoice Date                                                  |           
+|Input     |Tax rate                                                      |           
+|Title     |                                                              |           
+|Select    |Customer                                                      |           
+|Text      |Company                                                       |           
+|Text      |Name                                                          |           
+|Text      |Bill Name                                                     |           
+|Text      |Email                                                         |           
+|Text      |Bill Email                                                    |           
+|Text      |Address                                                       |           
+|Text      |Bill Address                                                  |           
+|Text      |Phone                                                         |           
+|Text      |Bill Phone                                                    |           
+|Title     |                                                              |           
+|Button    |<span class="glyphicon glyphicon-remove"></span>              |           
+|Input     |Description                                                   |           
+|Input     |Rate                                                          |           
+|Input     |Quantity                                                      |           
+|Text      |Amount                                                        |           
+|Button    |<span class="glyphicon glyphicon-plus"></span> Add InvoiceLine|           
+|Input     |Subtotal                                                      |           
+|Input     |Tax ({{tax}}%)                                                |           
+|Input     |Total                                                         |           
+|Button    |Submit                                                        |           
+|Text      |                                                              |           
+|===
+
+===== icon:list-alt[] Contract inputs
+
+[verse]
+{
+    invoiceInput ([teal]_InvoiceInput_)
+}
+
+[verse]
+[teal]#InvoiceInput# {
+    invoiceDate ([olive]_Localdate_),
+    total ([olive]_Integer_),
+    customer ([teal]_Customer_),
+    invoiceLines ([teal]_InvoiceLines_, _multiple_),
+    subTotal ([olive]_Integer_),
+    tax ([olive]_Integer_),
+    taxRate ([olive]_Integer_)
+}
+
+[verse]
+[teal]#Customer# {
+    persistenceId_string ([olive]_Text_)
+}
+
+[verse]
+[teal]#InvoiceLines# {
+    persistenceId_string ([olive]_Text_),
+    description ([olive]_Text_),
+    quantity ([olive]_Integer_),
+    amount ([olive]_Integer_)
+}
+
+===== icon:check-circle[] Contract constraints
+
+aggregation_invoiceInput_customer:: _No description available_
++
+.Expression
+[source,groovy]
+----
+!invoiceInput?.customer || invoiceInput?.customer?.persistenceId_string
+----
++
+.Technical error message
+----
+Customer must reference an existing instance with a persistenceId for Invoice
+----
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_87b7fb1e-64d7-3a7a-9065-a841525838b2,Generate invoice file>>*
+
+==== [[_87b7fb1e-64d7-3a7a-9065-a841525838b2]]image:icons/ServiceTask.png[title="ServiceTask"] Generate invoice file
+
+_No description available_
+
+*Previous flow element(s)*: <<_a3d33cdf-dd07-3b15-8e64-015ed22af8c1,Review invoice>>
+
+===== icon:plug[] Connectors out
+
+*Insert data in a .docx/.odt template: generateInvoice*
+*Generate pdf from an office document: generateInvoicePDF*
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_26655c09-9504-330c-8e18-e91d0112a8db,Check invoice file>>*
+
+==== [[_26655c09-9504-330c-8e18-e91d0112a8db]]image:icons/Task.png[title="Task"] Check invoice file
+
+_No description available_
+
+*Previous flow element(s)*: <<_87b7fb1e-64d7-3a7a-9065-a841525838b2,Generate invoice file>>
+
+===== [[_e5a1daa0-ccb8-3daa-bd71-5a0d6445af92]]image:icons/page.png[] checkFinalInvoice
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type      |Label |Description
+|Title     |      |           
+|Text      |      |           
+|FileViewer|      |           
+|Button    |Submit|           
+|Text      |      |           
+|===
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_c599132d-c4df-34b4-9225-7bccbde01615,End invoice>>*
+
+==== [[_c599132d-c4df-34b4-9225-7bccbde01615]]image:icons/EndEvent.png[title="EndEvent"] End invoice
+
+_No description available_
+
+*Previous flow element(s)*: <<_26655c09-9504-330c-8e18-e91d0112a8db,Check invoice file>>
+
+== Process diagrams
+
+=== CustomerManagement (1.0)
+
+_No description available_
+
+image::diagrams/CustomerManagement-1.0.png[]
+
+=== InvoiceManagement (1.0)
+
+_No description available_
+
+image::diagrams/InvoiceManagement-1.0.png[]
+
+=== InvoiceManagement (2.0)
+
+_No description available_
+
+image::diagrams/InvoiceManagement-2.0.png[]
+
+=== InvoiceManagement (3.0)
+
+_No description available_
+
+image::diagrams/InvoiceManagement-3.0.png[]
+
+=== InvoiceManagement (4.0)
+
+_No description available_
+
+image::diagrams/InvoiceManagement-4.0.png[]
+
+=== InvoiceManagement (5.0)
+
+_No description available_
+
+image::diagrams/InvoiceManagement-5.0.png[]
+
+=== InvoiceManagement (6.0)
+
+_No description available_
+
+image::diagrams/InvoiceManagement-6.0.png[]
+
+== Organization
+
+=== Groups
+
+////
+Install graphviz to benefit of plantuml diagram generation.
+Visit https://graphviz.org/download/ for more information.
+////
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Path                     |Display name          |Description                                                                         
+|/acme                    |Acme                  |This group represents the acme department of the ACME organization                  
+|/acme/hr                 |Human Resources       |This group represents the human resources department of the ACME organization       
+|/acme/finance            |Finance               |This group represents the finance department of the ACME organization               
+|/acme/it                 |Infrastructure        |This group represents the infrastructure department of the ACME organization        
+|/acme/marketing          |Marketing             |This group represents the marketing department of the ACME organization             
+|/acme/production         |Production            |This group represents the production department of the ACME organization            
+|/acme/production/rd      |Research & Development|This group represents the research & development department of the ACME organization
+|/acme/production/services|Services              |This group represents the services department of the ACME organization              
+|/acme/sales              |Sales                 |This group represents the sales department of the ACME organization                 
+|/acme/sales/europe       |Europe                |This group represents the europe department of the ACME organization                
+|/acme/sales/asia         |Asia                  |This group represents the asia department of the ACME organization                  
+|/acme/sales/latin_america|Latin America         |This group represents the latin america department of the ACME organization         
+|/acme/sales/north_america|North America         |This group represents the north america department of the ACME organization         
+|===
+
+=== Roles
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name  |Display name|Description
+|member|Member      |           
+|===
+
+=== Profiles
+
+[grid=cols,options="header",cols="1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                    |Description                                                                                                                 
+|[[_1300bb05-3afe-3c2d-af8b-543b4fb16c32]]User           |The user can view and perform tasks and can start a new case of a
+process.                                                  
+|[[_080d4ce6-9f34-37f2-a270-2edb021a60ec]]Administrator  |The administrator can install a process, manage the organization, and
+handle some errors (for example, by replaying a task).
+|[[_ec4b68ef-adbc-302e-8811-94d9a8fc9032]]Process manager|The Process manager can supervise designated processes, and manage
+cases and tasks of those processes.                      
+|===
+

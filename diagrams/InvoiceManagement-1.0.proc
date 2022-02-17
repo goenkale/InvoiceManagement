@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:decision="http://www.bonitasoft.org/ns/studio/process/decision" xmlns:expression="http://www.bonitasoft.org/ns/studio/expression" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:process="http://www.bonitasoft.org/ns/studio/process" xsi:schemaLocation="http://www.bonitasoft.org/ns/studio/process/decision http://www.bonitasoft.org/ns/studio/process#//decision">
-  <process:MainProcess xmi:id="_nmtBMGkvEeqX24msL49PEg" name="InvoiceManagement" author="Bonitasoft" bonitaVersion="7.12.8" bonitaModelVersion="7.12.0-004" configId="ACED0005740023496E766F6963654D616E6167656D656E74372E31302E302D303031372E31302E357370">
+  <process:MainProcess xmi:id="_nmtBMGkvEeqX24msL49PEg" name="InvoiceManagement" author="Bonitasoft" bonitaVersion="7.13.1" bonitaModelVersion="7.12.0-004" configId="ACED0005740023496E766F6963654D616E6167656D656E74372E31302E302D303031372E31302E357370">
     <elements xmi:type="process:Pool" xmi:id="_nmtBMWkvEeqX24msL49PEg" name="InvoiceManagement">
       <elements xmi:type="process:Lane" xmi:id="_nmtBMmkvEeqX24msL49PEg" name="Employee lane" actor="_nmtBS2kvEeqX24msL49PEg">
         <elements xmi:type="process:StartEvent" xmi:id="_nmtBM2kvEeqX24msL49PEg" name="Create invoice" outgoing="_nmtBSGkvEeqX24msL49PEg">
@@ -62,19 +62,19 @@
       </overviewFormMapping>
       <connections xmi:type="process:SequenceFlow" xmi:id="_nmtBSGkvEeqX24msL49PEg" target="_nmtBN2kvEeqX24msL49PEg" source="_nmtBM2kvEeqX24msL49PEg">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_nmtBSWkvEeqX24msL49PEg"/>
-        <condition xmi:type="expression:Expression" xmi:id="_nmtBSmkvEeqX24msL49PEg" name="" type="TYPE_CONDITION" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="_nmtBSmkvEeqX24msL49PEg" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_vpz8AGkvEeqX24msL49PEg" target="_zprD0GkvEeqX24msL49PEg" source="_nmtBN2kvEeqX24msL49PEg">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_vp9F8GkvEeqX24msL49PEg"/>
-        <condition xmi:type="expression:Expression" xmi:id="_vp9F8WkvEeqX24msL49PEg" name="" type="TYPE_CONDITION" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="_vp9F8WkvEeqX24msL49PEg" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_zp000GkvEeqX24msL49PEg" target="_v65E8GkvEeqX24msL49PEg" source="_zprD0GkvEeqX24msL49PEg">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_zp000WkvEeqX24msL49PEg"/>
-        <condition xmi:type="expression:Expression" xmi:id="_zp000mkvEeqX24msL49PEg" name="" type="TYPE_CONDITION" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="_zp000mkvEeqX24msL49PEg" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="__JQskGkvEeqX24msL49PEg" target="__JHioGkvEeqX24msL49PEg" source="_v65E8GkvEeqX24msL49PEg">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="__JQskWkvEeqX24msL49PEg"/>
-        <condition xmi:type="expression:Expression" xmi:id="__JQskmkvEeqX24msL49PEg" name="" type="TYPE_CONDITION" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="__JQskmkvEeqX24msL49PEg" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <actors xmi:type="process:Actor" xmi:id="_nmtBS2kvEeqX24msL49PEg" documentation="This is an example of actor that is mapped to any ACME users" name="Employee actor" initiator="true"/>
       <contract xmi:type="process:Contract" xmi:id="_nmtBTGkvEeqX24msL49PEg"/>

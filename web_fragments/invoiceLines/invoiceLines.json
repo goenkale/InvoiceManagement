@@ -1,9 +1,9 @@
 {
-  "modelVersion" : "2.0",
-  "previousArtifactVersion" : "1.10.50",
+  "modelVersion" : "2.2",
+  "previousArtifactVersion" : "2.0",
   "id" : "invoiceLines",
   "name" : "invoiceLines",
-  "lastUpdate" : 1617377381805,
+  "lastUpdate" : 1645109042694,
   "rows" : [
     [
       {

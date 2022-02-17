@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:connectorconfiguration="http://wwww.bonitasoft.org/model/connector/configuration" xmlns:decision="http://www.bonitasoft.org/ns/studio/process/decision" xmlns:definition="http://www.bonitasoft.org/ns/connector/definition/6.1" xmlns:expression="http://www.bonitasoft.org/ns/studio/expression" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:process="http://www.bonitasoft.org/ns/studio/process" xsi:schemaLocation="http://www.bonitasoft.org/ns/studio/process/decision http://www.bonitasoft.org/ns/studio/process#//decision">
-  <process:MainProcess xmi:id="_lrw6UGk2EeqX24msL49PEg" name="InvoiceManagement" version="4.0" author="Bonitasoft" bonitaVersion="7.12.8" bonitaModelVersion="7.12.0-004" configId="ACED0005740023496E766F6963654D616E6167656D656E74372E31302E302D303031372E31302E357370">
+  <process:MainProcess xmi:id="_lrw6UGk2EeqX24msL49PEg" name="InvoiceManagement" version="4.0" author="Bonitasoft" bonitaVersion="7.13.1" bonitaModelVersion="7.12.0-004" configId="ACED0005740023496E766F6963654D616E6167656D656E74372E31302E302D303031372E31302E357370">
     <elements xmi:type="process:Pool" xmi:id="_lrw6UWk2EeqX24msL49PEg" name="InvoiceManagement" version="4.0">
       <elements xmi:type="process:Lane" xmi:id="_lrw6Umk2EeqX24msL49PEg" name="Employee lane" actor="_lrw6uGk2EeqX24msL49PEg">
         <elements xmi:type="process:StartEvent" xmi:id="_lrw6U2k2EeqX24msL49PEg" name="Create invoice" outgoing="_lrw6rGk2EeqX24msL49PEg">
@@ -296,19 +296,19 @@
       </overviewFormMapping>
       <connections xmi:type="process:SequenceFlow" xmi:id="_lrw6rGk2EeqX24msL49PEg" target="_lrw6V2k2EeqX24msL49PEg" source="_lrw6U2k2EeqX24msL49PEg">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_lrw6rWk2EeqX24msL49PEg"/>
-        <condition xmi:type="expression:Expression" xmi:id="_lrw6rmk2EeqX24msL49PEg" name="" type="TYPE_CONDITION" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="_lrw6rmk2EeqX24msL49PEg" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_lrw6r2k2EeqX24msL49PEg" target="_lrw6lmk2EeqX24msL49PEg" source="_lrw6V2k2EeqX24msL49PEg">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_lrw6sGk2EeqX24msL49PEg"/>
-        <condition xmi:type="expression:Expression" xmi:id="_lrw6sWk2EeqX24msL49PEg" name="" type="TYPE_CONDITION" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="_lrw6sWk2EeqX24msL49PEg" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_lrw6smk2EeqX24msL49PEg" target="_lrw6iWk2EeqX24msL49PEg" source="_lrw6lmk2EeqX24msL49PEg">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_lrw6s2k2EeqX24msL49PEg"/>
-        <condition xmi:type="expression:Expression" xmi:id="_lrw6tGk2EeqX24msL49PEg" name="" type="TYPE_CONDITION" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="_lrw6tGk2EeqX24msL49PEg" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_lrw6tWk2EeqX24msL49PEg" target="_lrw6n2k2EeqX24msL49PEg" source="_lrw6iWk2EeqX24msL49PEg">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_lrw6tmk2EeqX24msL49PEg"/>
-        <condition xmi:type="expression:Expression" xmi:id="_lrw6t2k2EeqX24msL49PEg" name="" type="TYPE_CONDITION" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="_lrw6t2k2EeqX24msL49PEg" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <actors xmi:type="process:Actor" xmi:id="_lrw6uGk2EeqX24msL49PEg" documentation="This is an example of actor that is mapped to any ACME users" name="Employee actor" initiator="true"/>
       <contract xmi:type="process:Contract" xmi:id="_lrw6uWk2EeqX24msL49PEg">
