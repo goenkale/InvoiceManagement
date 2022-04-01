@@ -1,3 +1,9 @@
+== Migration notes (April 1, 2022 at 5:23:41 PM CEST)
+
+=== Updates
+
+* `bonita-project-maven-plugin.version` has been updated from `0.0.4` to `0.0.5`.
+
 == Migration notes (February 17, 2022 at 3:44:04 PM CET)
 
 === Additions
